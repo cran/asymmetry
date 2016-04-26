@@ -1,0 +1,7 @@
+exportPattern("^[[:alpha:]]+")
+import(rJava)
+importFrom("graphics", "arrows", "plot", "text")
+export(slidevector)
+S3method(print, slidevector)
+S3method(summary, slidevector)
+S3method(plot, slidevector)
