@@ -9,7 +9,7 @@ The slide-vector model
 This function fits the slide vector model to asymmetric data.
 }
 \usage{
-slidevector(data,dim=2,itmax=125,eps=1e-12)
+slidevector(data, dim = 2, itmax = 125, eps = 1e-12)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -48,7 +48,7 @@ Berrie Zielman
 \examples{
 ## asymmetric distances between English towns
 data(Englishtowns)
-v<-slidevector(Englishtowns,2,250,.0001)
+v <- slidevector(Englishtowns,2,250,.0001)
 plot(v)
 
 

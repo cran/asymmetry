@@ -23,7 +23,7 @@ Ignored
 
 \examples{
 data(Englishtowns)
-v<-slidevector(Englishtowns,2,250,.0001)
+v <- slidevector(Englishtowns,2,250,.0001)
 summary(v)
 
 }
