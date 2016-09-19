@@ -2,10 +2,10 @@
 \alias{hmap}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Heathmap for skew-symmetric data
+Heat map for skew-symmetric data
 }
 \description{
-This heathmap displays the values of a skew-symmetric matrix by colors. The option \code{dominance} orders the rows and columns of the matrix in such a way that the values in the uppertriangle are positive and the values in the lower triangle are negative. The order is calculated from the row-sums of the signs obtained from the skew-symmetric matrix.
+This heatmap displays the values of a skew-symmetric matrix by colors. The option \code{dominance} orders the rows and columns of the matrix in such a way that the values in the uppertriangle are positive and the values in the lower triangle are negative. The order is calculated from the row-sums of the signs obtained from the skew-symmetric matrix.
 }
 \usage{
 hmap(x, dominance = FALSE, ...)
@@ -16,7 +16,7 @@ hmap(x, dominance = FALSE, ...)
 A skew-symmetric matrix or an asymmetric matrix. An asymmetric matrix is converted to a skew-symmetrix matrix.
 }
   \item{dominance}{
-If true the signs of the skew-symmetric matrix are shown in the heathmap, if set to false the values in this matrix are shown.
+If true the signs of the skew-symmetric matrix are shown in the heatmap, if set to false the values in this matrix are shown.
 }
   \item{\dots}{Further plot arguments: see \code{\link[gplots]{heatmap.2}} for detailed information.}
 }

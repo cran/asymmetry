@@ -1,12 +1,13 @@
-ef85655b943fbc101c009219d540b92d *DESCRIPTION
-5ad3a2ebc88508e1ecef51da5c6944b1 *NAMESPACE
+4750a54a1de75dfa89dfdc47dba680b4 *DESCRIPTION
+198ddc014198f69d28bb3b674b775196 *NAMESPACE
+57411393c21e41478b4c6bc2203ae81b *R/decomposition.R
 4c031794a6c73c8341a6b8b49963c78c *R/hmap.R
 8b111ebca28e39ec879e2e8c49035a35 *R/onLoad.R
 c1e6e8c292a47076744b78d014572483 *R/plot.slidevector.R
 11955bb6df2ad02913bd4a8ddcbf12c8 *R/print.slidevector.R
 3da36261bcadbd3e71348182825e9492 *R/slidevector.R
 75b76f66f8daaf670a1641adb3a5c3eb *R/summary.slidevector.R
-a6daa517fc9fe0f406d64282fe7646c4 *build/partial.rdb
+767fce260f4c7b54029549737f9af563 *build/partial.rdb
 a8b1676e5a45beaedde2e9065d3afb83 *data/Englishtowns.RData
 865a354580a5840c595d8d2da56e886b *data/studentmigration.RData
 c78517f52d5cfd7d784c073072ac9be7 *inst/java/asymmetry.jar
@@ -16,7 +17,8 @@ cc363d79b174ec62bbde5ddb5855998f *java/CholeskyException.java
 774a33785c1c3c31fceec59226132fd9 *java/slidevector.java
 902640c5c450d83ab6896457db13b47c *man/Englishtowns.Rd
 06969603029bb7f58315ad58adc6f412 *man/asymmetry-package.Rd
-4f4fabe3a00eefd4582bf9988a46b3b4 *man/hmap.Rd
+507ca3bb1bef4390652e924d9d807e6d *man/decomposition.Rd
+15f6720fb4edc4bd9a2ede113b97d928 *man/hmap.Rd
 e9345f0e50632493729e879576f585b3 *man/plot.slidevector.Rd
 aeee7da722d30e8e6c9cb98213a4e347 *man/print.slidevector.Rd
 1dcdada03e0b6325b36edf1154bd1698 *man/slidevector.Rd
