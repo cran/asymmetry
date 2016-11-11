@@ -6,14 +6,14 @@ The slide-vector model
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-This function fits the slide vector model to asymmetric data.
+This function fits the slide-vector model to asymmetric data.
 }
 \usage{
 slidevector(data, dim = 2, itmax = 125, eps = 1e-12)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{data}{A matrix with asymmetric relationship data}
+\item{data}{An asymmetric matrix}
 \item{dim}{The number of dimensions for this model}
 \item{itmax}{The maximum number of iterations}
 \item{eps}{The convergence criterion for the algorithm}
@@ -32,6 +32,7 @@ The slide-vector model is a special case of the unfolding model. The stress is m
  \item{confi}{returns the configuration matrix of this multidimensional scaling model}
   \item{niter}{the number of iterations for the algorithm to converge}
   \item{nobs}{the number of observations}
+  \item{resid}{A matrix with raw residuals}
   \item{slvec }{Coordinates of the slide-vector}
 
 }
@@ -50,7 +51,4 @@ Berrie Zielman
 data(Englishtowns)
 v <- slidevector(Englishtowns,2,250,.0001)
 plot(v)
-
-
-
 }

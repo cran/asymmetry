@@ -10,14 +10,20 @@ function(data,dim=2,itmax=125,eps=1e-12){
   nobs <- .jcall(hjw,"I","getNobs")
   niter <- .jcall(hjw,"I","getNiter")
   stress <- .jcall(hjw,"D","getStress")
-  X=t(sapply(dis,.jevalArray))
-  mat<-X[1:nobs,]
-  Z<-X[nobs+1,]
+  X = t(sapply(dis,.jevalArray))
+  mat <- X[1:nobs,]
+  Z <- X[nobs+1,]
   if(!is.null(rownames(data)))
     rownames(mat)<-rownames(data)
   colnames(mat) <- paste("D",1:(dim(mat)[2]),sep="")
 
-  result<-list(ndim=ndim,stress=stress,confi=mat,slvec=Z,niter=niter,nobs=nobs)
+  a <- as.matrix(rbind(mat+matrix(Z,nrow=nobs,ncol=ndim,byrow=TRUE),mat))
+  pred <- as.matrix(dist(a,upper = TRUE))
+  pred <- pred[1:nobs,(nobs+1):(2*nobs)]
+  resid <- data-pred
+
+
+  result<-list(ndim=ndim,stress=stress,confi=mat,slvec=Z,resid = resid, niter=niter,nobs=nobs,pred=pred)
   class(result)<-"slidevector"
   return(result)
 }

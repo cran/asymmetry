@@ -13,7 +13,7 @@ hmap(x, dominance = FALSE, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A skew-symmetric matrix or an asymmetric matrix. An asymmetric matrix is converted to a skew-symmetrix matrix.
+A skew-symmetric matrix, an asymmetric matrix, or an object of class \code{decomposition} If an asymmetric matrix is given, the skew-symmetrix part is computed.
 }
   \item{dominance}{
 If true the signs of the skew-symmetric matrix are shown in the heatmap, if set to false the values in this matrix are shown.

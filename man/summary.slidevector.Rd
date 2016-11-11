@@ -14,7 +14,7 @@ This function extracts the configuration matrix and the slide-vector from the ob
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{
-An object of class \code{object} slidevector
+An object of class \code{slidevector}
 }
   \item{\dots}{
 Ignored

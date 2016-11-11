@@ -1,9 +1,13 @@
 exportPattern("^[[:alpha:]]+")
 import(rJava,gplots)
 importFrom("graphics", "arrows", "plot", "text")
+importFrom("methods", "is")
 export(slidevector)
 export(hmap)
 export(decomposition)
 S3method(print, slidevector)
 S3method(summary, slidevector)
 S3method(plot, slidevector)
+S3method(summary, decomposition)
+
+importFrom("stats", "dist")

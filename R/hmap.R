@@ -4,10 +4,12 @@ hmap<-function(x,dominance=FALSE,...)
   Rowv <- NULL
   Colv <- NULL
   trace <- NULL
-  if(!is.matrix(x))     stop("first argument should be a matrix")
+#  if(!is.matrix(x))     stop("first argument should be a matrix")
+  if(is.matrix(x)) x <- .5*(x-t(x))
+  if(is(x,"decomposition")) x <-x$A
+
   if (nrow(x)!=ncol(x)) stop("the same number of rows and columns are expected")
   #  order//
-  x <- .5*(x-t(x))
   bin<-x*0
   bin[x>0]<-1
   bin[x<0]<--1
