@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
    cache = FALSE,
    dpi = 75,
    fig.width = 6, fig.height = 6,
+   fig.keep = 'high',
   # comment = "#>",
   tidy = FALSE)
 
@@ -62,7 +63,7 @@ The summary method provides the sum of squares due to symmetry and the sum of sq
 ```{r example2}
 summary(q1)
 ```
-The additivity of the two sums of squares provides a justification for analyzing the two components independently. For instance, the symmetric part can be represented by a symmetric method such as multidimensional scaling or hierarchical cluster analysis. The results of a hierarchical cluster analysis are shown below. In a later stage the results of these analyses can possibly be used to suggest a joint model for the two components
+The additivity of the two sums of squares provides a justification for analyzing the two components independently. For instance, the symmetric part can be represented by a symmetric method such as multidimensional scaling or hierarchical cluster analysis. Suggestions for the analysis of the skew-symmetric part are the heatmap, the linear model of the Gower diagram.  In a later stage the results of these analyses of the two components can possibly be used to suggest a joint model the table $Q$. The results of a hierarchical cluster analysis are shown below.
 
 ```{r clustering}
 clus <- hclust(as.dist(1/q1$S))
@@ -71,7 +72,7 @@ plot(clus,xlab=NA,sub=NA)
 
 ## Heatmap
 
-A heat map displays values in a data matrix by colors and reorders this matrix by dendograms. The heat map function **hmap** displays the values of a skew-symmetric matrix by colors, and the order of the rows and columns is given by the row sums of the matrix. The order is calculated from the signs obtained from the skew-symmetric matrix; it is the number of positive elements in a row of the matrix. If the matrix has no circular triads all values in the upper triangle are positive and all values in the lower triangle are negative. The option dominance gives the signs of the skew-symmetric matrix, otherwise the values are shown.
+Color is widely used in data visualization to show data values. A heat map displays values in a data matrix by colors and reorders the rows and columns of this matrix by dendograms. The heat map function **hmap**  is a quick way to visualize  skew-symmetric data. The order of the rows and columns is given by the row sums of the matrix, and not by a dendogram as in a usual heatmap. A permutation of the rows and columns is derived from the number of positive elements in a row of the matrix. If the matrix has no circular triads all values in the upper triangle are positive and all values in the lower triangle are negative. This method can display the signs or values of the elements in the matrix. The option dominance gives the signs of the skew-symmetric matrix, otherwise the values are shown.
 
 ```{r example3, echo=TRUE}
 library(RColorBrewer)
@@ -121,15 +122,18 @@ The slide-vector model is given by the following equation
 $$ d_{ij}(X;z)=\sqrt{\sum_{s=1}^p(x_{is}-x_{js}+z_{is})^2}.$$
 
 The squared distances can be decomposed in a linear skew-symmetric and symmetric part.
-$$ d_{ij}^2(X;z)=\sum_{s=1}^p(x_{is}-x_{js})^2+\sum_{s=1}^p z_{is}^2 + 2\sum_{s=1}^p x_{is}-x_{js})^2z_{is}.$$
+$$ d_{ij}^2(X;z)=\sum_{s=1}^p (x_{is}-x_{js})^2+\sum_{s=1}^p z_{is}^2 + 2\sum_{s=1}^p( x_{is}-x_{js})z_{is}.$$
 
-The decomposition can also be applied to a matrix of residuals instead of data. This is usefull for indicating lack of fit in either the symmetric or skew-symmetric component.
 
 ```{r englishtowns , fig.width = 8, fig.height = 8}
 
 data(Englishtowns)
-v<-slidevector(Englishtowns,2,250,.001)
+v<-slidevector(Englishtowns,dim = 2,itmax = 250, eps = .001)
 plot(v,col="blue",ylim=c(-150,300),xlim=c(-150,300))
+```
+
+Another example of the function **decomposition** is the application to a matrix of residuals instead of the data. This is useful for indicating lack of fit of a model in either the symmetric or skew-symmetric component.
+```{r englishtowns stress decomposition , fig.width = 8, fig.height = 8}
 q2 <- decomposition(v$resid)
 summary(q2)
 ```

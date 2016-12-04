@@ -9,18 +9,18 @@ The decomposition of an asymmetric matrix into a symmetric matrix and a skew-sym
 
 }
 \usage{
-decomposition(X)
+decomposition(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{X}{
+  \item{x}{
 An asymmetric matrix
 }
 }
 \value{
   \item{S }{The symmetric part of the matrix}
   \item{A }{The skew-symmetric part of the matrix}
-
+  \item{linear}{The linear part of the skew-symmetric matrix}
 }
 \author{
 Berrie Zielman

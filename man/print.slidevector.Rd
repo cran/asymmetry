@@ -18,14 +18,6 @@ Print method for objects of class slidevector.
 Object of class slidevector
 }
   \item{\dots}{
-Ignored
+Further arguments
 }
-}
-
-\examples{
-dis <- matrix(c(1,2,3,4,5,6,2,8,9,3), nrow = 5, ncol = 2)
-a <- rbind(dis,dis+1.5)
-test <- as.matrix(dist(a))[1:5,6:10]
-v <- slidevector(test, 2, 250, .001)
-print(v)
 }

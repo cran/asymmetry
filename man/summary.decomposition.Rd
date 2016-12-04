@@ -5,7 +5,7 @@
 Summary method of the decomposition
 }
 \description{
-Prints a decomposition of the sum of squares of an asymmetric matrix. The first column gives the sum of squares, whereas the second column gives the percentages of the two components. This decomposition can be applied to data, but also to the residuals of a fitted model.}
+Prints a decomposition of the sum of squares of an asymmetric matrix. The first column gives the sum of squares, and the second column gives the percentages of the two components. This decomposition can be applied to data, but also to a matrix of residuals obtained from a fitted model.}
 \usage{
 \method{summary}{decomposition}(object, ...)
 }

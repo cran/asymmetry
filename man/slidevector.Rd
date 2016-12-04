@@ -6,15 +6,16 @@ The slide-vector model
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-This function fits the slide-vector model to asymmetric data.
+The slide vector model is a scaling model for asymmetric data. A distance model is fitted to the symmetric part of the data whereas the asymmetric part of the data is represented by projections of the coordinates onto the slide-vector. The slide-vector points in the direction of large asymmetries in the data. The distance is modified in such a way that the distance between two points that are parallel  to the slide-vector is larger in the direction of this vector. The distance is smaller in the opposite direction. If the line connecting two points is perpendicular to the slide-vector the difference between the two projections is zero. In this case the distance between the two points is symmetric. The algorithm for fitting this model is derived from the majorization approach to multidimensional scaling.
 }
 \usage{
-slidevector(data, dim = 2, itmax = 125, eps = 1e-12)
+slidevector(data, dim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{data}{An asymmetric matrix}
 \item{dim}{The number of dimensions for this model}
+\item{verbose}{Print the history of iterations}
 \item{itmax}{The maximum number of iterations}
 \item{eps}{The convergence criterion for the algorithm}
 }
@@ -49,6 +50,6 @@ Berrie Zielman
 \examples{
 ## asymmetric distances between English towns
 data(Englishtowns)
-v <- slidevector(Englishtowns,2,250,.0001)
+v <- slidevector(Englishtowns,dim = 2,itmax = 250, eps = .001)
 plot(v)
 }
