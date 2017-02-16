@@ -29,6 +29,9 @@ summary(q1)
 clus <- hclust(as.dist(1/q1$S))
 plot(clus,xlab=NA,sub=NA)
 
+## ----linear--------------------------------------------------------------
+   q1$linear
+
 ## ----example3, echo=TRUE-------------------------------------------------
 library(RColorBrewer)
 # creates a color palette from red to blue
@@ -56,13 +59,9 @@ data(studentmigration)
 hmap(studentmigration[idx,idx], dominance = FALSE, col = my_palette, key = FALSE, xlab = "Destination country", ylab = "Home country", colsep = c(1:6), rowsep = c(1:6))
 
 
-## ----englishtowns , fig.width = 8, fig.height = 8------------------------
+## ----englishtowns, fig.width = 8, fig.height = 8-------------------------
 
 data(Englishtowns)
 v<-slidevector(Englishtowns,dim = 2,itmax = 250, eps = .001)
 plot(v,col="blue",ylim=c(-150,300),xlim=c(-150,300))
-
-## ----englishtowns stress decomposition , fig.width = 8, fig.height = 8----
-q2 <- decomposition(v$resid)
-summary(q2)
 

@@ -2,7 +2,7 @@
 \alias{summary.slidevector}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-summary method for the slide-vector model
+Summary method for the slide-vector model
 }
 \description{
 This function extracts the configuration matrix and the slide-vector from the object.

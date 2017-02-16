@@ -6,7 +6,7 @@ The slide-vector model
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-The slide vector model is a scaling model for asymmetric data. A distance model is fitted to the symmetric part of the data whereas the asymmetric part of the data is represented by projections of the coordinates onto the slide-vector. The slide-vector points in the direction of large asymmetries in the data. The distance is modified in such a way that the distance between two points that are parallel  to the slide-vector is larger in the direction of this vector. The distance is smaller in the opposite direction. If the line connecting two points is perpendicular to the slide-vector the difference between the two projections is zero. In this case the distance between the two points is symmetric. The algorithm for fitting this model is derived from the majorization approach to multidimensional scaling.
+The slide vector model is a multidimensional scaling model for asymmetric data. A distance model is fitted to the symmetric part of the data whereas the asymmetric part of the data is represented by projections of the coordinates onto the slide-vector. The slide-vector points in the direction of large asymmetries in the data. The interpretation of asymmetry in this model is aided by the use of projections of points onto the slide-vector. The distance from i to j is larger if the point i has a higher projection onto the slide-vector than the distance from j to i. If the line connecting two points is perpendicular to the slide-vector the difference between the two projections is zero. In this case the distance between the two points is symmetric. The algorithm for fitting this model is derived from the majorization approach to multidimensional scaling.
 }
 \usage{
 slidevector(data, dim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
@@ -20,7 +20,7 @@ slidevector(data, dim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
 \item{eps}{The convergence criterion for the algorithm}
 }
 \details{
-The slide-vector model is a special case of the unfolding model. The stress is minimized by a version of the SMACOF algorithm. The main output are the configuration of points and the slide-vector.
+The slide-vector model is a special case of the unfolding model. Therefore, the algorithm for fitting this model is a constrained unfolding model. The coordinates of the objects are calculated by minimizing a least squares loss function. This loss function is called stress in the multidimensional scaling literature. The stress is minimized by a version of the SMACOF algorithm. The main output are the configuration of points and the slide-vector.
 }
 \value{
 %%  ~Describe the value returned
@@ -53,3 +53,4 @@ data(Englishtowns)
 v <- slidevector(Englishtowns,dim = 2,itmax = 250, eps = .001)
 plot(v)
 }
+\keyword{models}
