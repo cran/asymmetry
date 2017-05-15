@@ -5,18 +5,21 @@
 asymscal
 }
 \description{
-This function fits the asymscal model proposed by Young (1975). Asymmetry in the data arises by weighting the dimensions of a multidimensional scaling configuration. When a subject compares object \emph{i} to \emph{j} he or she may use different weights when comparing object \emph{j} to \emph{i}.
+This function fits the multidimensional scaling model known as the asymscal model. This model is an extension of the symmetric Euclidean distance model proposed by Young (1975). The model is fitted in a stress majorization framework called SMACOF, whereas Young fitted this model using a least squares algorithm. Asymmetry is modelled by differential weighting of the dimensions of a multidimensional scaling configuration. When a subject compares object \emph{i} to \emph{j} he or she may use different weights when comparing object \emph{j} to \emph{i} In addition to these weights, the locations of the objects are jointly estimated from the data.
 }
 \usage{
-asymscal(data, ndim = 2, itmax = 10000, eps = 1e-10)
+asymscal(data, ndim = 2, start=NULL, itmax = 10000, eps = 1e-10)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-The data
+A matrix with the same number of rows and columns
 }
   \item{ndim}{
 The number of dimensions
+}
+  \item{start}{
+An optional configuration with starting values
 }
   \item{itmax}{
 The maximum number of iterations
@@ -26,13 +29,11 @@ Convergence criterion for Stress
 }
 }
 \details{
-This function exploits a connection between the INDSCAL model and the asymscal model. This method inherits the methods for plotting an printing from the \code{smacofIndDiff} in the smacof package. Basically, the asymscal takes two steps. First, this function sets up the appropriate dissimilarity and missing data structure for a three-way multidimensional scaling model, then a call to the method \code{smacofIndDiff} in the imported package smacof is made. After correcting for the normalization applied to the data by \code{smacofIndDiff}, the results can be displayed and plotted by the methods in the package smacof.
+This function exploits a connection between the INDSCAL model and the asymscal model. This method inherits the methods for plotting an printing from the \code{smacofIndDiff} in the smacof package. Basically, the asymscal takes two steps. First, this function sets up the appropriate dissimilarity and missing data structure for a three-way multidimensional scaling model, then a call to the method \code{smacofIndDiff} in the imported package smacof is made. After correcting for the normalization applied to the data by \code{smacofIndDiff}, the results can be displayed and plotted by the methods in the package \code{smacof}.
 }
 \value{
   \item{delta}{Observed dissimilarities}
   \item{obsdiss}{List of observed dissimilarities, normalized}
-  \item{confdiss}{List of configuration dissimilarities}
-  \item{conf}{List of matrices of final configurations}
   \item{gspace}{Joint configurations aka group stimulus space}
   \item{cweights}{Configuration weights}
   \item{stress}{Stress-1 value}
@@ -59,14 +60,13 @@ The original algorithm for fitting the asymscal model fits squared distances. Th
 \examples{
 \dontrun{
 data("asymscalexample")
-t<-asymscal(data,ndim=2,itmax=10000,eps=1e-10)
+t<-asymscal(asymscalexample,ndim=2,itmax=10000,eps=1e-10)
 t$cweights
 round(t$cweights,3)
 plot(t, plot.type = "confplot")
 plot(t, plot.type = "bubbleplot")
 plot(t, plot.type = "stressplot")
 }
-
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

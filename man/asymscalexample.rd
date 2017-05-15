@@ -11,8 +11,4 @@ This is an artificial dataset. The data are distances from a two-dimensional mod
 \format{
   A matrix with 15 rows and 15 columns.
 }
-\examples{
-data(asymscalexample)
-## maybe str(asymscalexample) ; plot(asymscalexample) ...
-}
 \keyword{datasets}

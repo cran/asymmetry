@@ -2,7 +2,7 @@
 \alias{studentmigration}
 \docType{data}
 \title{
-Student Migration in the Erasmus Program
+Student Mobility in the Erasmus Program
 }
 \description{
 The table lists the home and destination country of 268.142 students in the academic year 2012-2013. The 33 rows of this table refer to the home country whereas the 33 columns refer to the destination countries. The table gives the number of inbound and outbound students between every pair of countries. The entries in the table are read as follows: 32 students from Bulgaria studied in The Netherlands, 18 students from the Netherlands studied in Bulgaria.
@@ -20,7 +20,7 @@ The 2-letter codes shown below are supplied by the ISO (International Organizati
 \href{http://ec.europa.eu/education/library/statistics/ay-12-13/annex-2_en.pdf}{http://ec.europa.eu/education/library/statistics/ay-12-13/annex-2_en.pdf}
 }
 \note{ Macedonia has been removed from this table because only one student from
-this country participated in the program.}
+this country participated in the program, and no students moved to Macedonia.}
 \examples{
 data(studentmigration)
 hmap(studentmigration)

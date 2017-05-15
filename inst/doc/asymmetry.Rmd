@@ -1,5 +1,5 @@
 ---
-title: "Visualizing asymmetry"
+title: "Visualizing Asymmetry"
 date: "`r Sys.Date()`"
 output: 
   html_vignette: 
@@ -33,7 +33,7 @@ idx <- c(3,4,25,27,31) #select five countries
 studentmigration[idx,idx]
 ```
 
-The data are migration data of students participating in the Erasmus program. The Erasmus program is a student exchange program from the European Union. Three million students had taken part since the start of the program in 1987. To join this program a student has study at least three months or do an internship of at least two months in another country. The entries in the table are as follows: 190 students move from the Czech Republic (CZ) to Denmark (DK), whereas 42 students move from Denmark to the Czech Republic.
+The data give the number of inbound and outbound students in the Erasmus program. These migration data of students participating in the Erasmus program may give insight in the similarity between countries and the attractiveness of countries. The Erasmus program is a student exchange program from the European Union. Three million students had taken part since the start of the program in 1987. To join this program a student has study at least three months or do an internship of at least two months in another country. The entries in the table are as follows: 190 students move from the Czech Republic (CZ) to Denmark (DK), whereas 42 students move from Denmark to the Czech Republic.
 The complete table lists the home and destination country of 268.142 students in the academic year 2012- 2013. 
 
 ## Decomposition
