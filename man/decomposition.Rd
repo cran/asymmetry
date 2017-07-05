@@ -30,5 +30,5 @@ data("Englishtowns")
 Q <- decomposition(Englishtowns)
 # the skew-symmetric part
 Q$A
-
 }
+\keyword{Methods}

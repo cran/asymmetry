@@ -11,4 +11,4 @@ This is an artificial dataset. The data are distances from a two-dimensional mod
 \format{
   A matrix with 15 rows and 15 columns.
 }
-\keyword{datasets}
+\keyword{Datasets}

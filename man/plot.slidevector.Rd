@@ -19,7 +19,7 @@ Object of class \code{slidevector}
 A vector with dimensions to be plotted
 }
   \item{yplus}{
-  parameter to adjust the vertical position of the label
+  Parameter to adjust the vertical position of the label
   }
   \item{xlab}{
 Label of x-axis.
@@ -34,9 +34,9 @@ Label of y-axis.
 
 \examples{
 ## 2D plot for the slide-vector model
-dis <- matrix(c(1,2,3,4,5,6,2,8,9,3), nrow = 5, ncol = 2)
-a <- rbind(dis,dis+1.5)
-test <- as.matrix(dist(a))[1:5,6:10]
+dis <- matrix(c(1,2,3,4,5,6,2,8,9,3), nrow = 5, ncol = 2)   #configuration
+a <- rbind(dis,dis+1.5)                                     #generate slide-vector
+test <- as.matrix(dist(a))[1:5,6:10]                        #extract data
 v <- slidevector(test, dim = 2,itmax = 250, eps = .001)
 plot(v)
 }

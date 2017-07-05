@@ -25,4 +25,4 @@ this country participated in the program, and no students moved to Macedonia.}
 data(studentmigration)
 hmap(studentmigration)
 }
-\keyword{datasets}
+\keyword{Datasets}

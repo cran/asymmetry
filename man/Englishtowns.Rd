@@ -2,10 +2,10 @@
 \alias{Englishtowns}
 \docType{data}
 \title{
-Distance matrix of eight english towns
+Distance Matrix of Eight English Towns
 }
 \description{
- A data matrix with 8 rows and 8 columns. The data are a  distance matrix between eight English towns. The data are not symmetric because a linear skew-symmetric matrix is added to the true distances
+ A data matrix with 8 rows and 8 columns. The data are distances between eight English towns, this data matrix is made asymmetric by addding linear skew-symmetric matrix. In this dataset, asymmetry is imposed by perturbing the data.
 }
 \usage{data("Englishtowns")}
 \references{
@@ -14,4 +14,4 @@ Constantine, A.G. & Gower, J.C. (1978). Graphical Representation of Asymmetric M
 \examples{
 data(Englishtowns)
 }
-\keyword{datasets}
+\keyword{Datasets}

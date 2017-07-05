@@ -1,5 +1,7 @@
-asymscal <- function(data, ndim = 2,start=NULL, itmax = 10000, eps = 1e-10)
+asymscal <- function(data, ndim = 2, start=NULL, itmax = 10000, eps = 1e-10)
 {
+  if (sum(data<0) > 0) stop("data for the slide-vector model should be positive")
+  if (nrow(data)!=ncol(data)) stop("the same number of rows and columns are expected")
   nrow = nrow(data)
   l <- vector("list", nrow)
   dawe <- vector("list", nrow)

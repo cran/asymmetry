@@ -28,4 +28,5 @@ Berrie Zielman
 data(studentmigration)
 hmap(studentmigration,dominance=TRUE, col=c("red","white","blue"))
 }
+\keyword{Methods}
 
