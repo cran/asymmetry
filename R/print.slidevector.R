@@ -1,5 +1,5 @@
 print.slidevector <-
-function(x,...)
+function(x, ...)
 {
   cat("Dimensions:              ")
   cat(x$ndim)

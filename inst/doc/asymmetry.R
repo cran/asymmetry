@@ -16,7 +16,7 @@ idx <- c(3,4,25,27,31) #select five countries
 studentmigration[idx,idx]
 
 ## ----example-------------------------------------------------------------
-q1 <- decomposition(studentmigration[idx,idx])
+q1 <- skewsymmetry(studentmigration[idx,idx])
 q1$A
 
 ## ----symm----------------------------------------------------------------
@@ -45,7 +45,7 @@ hmap(q1, col = my_palette)
 ## ----example4------------------------------------------------------------
 data(studentmigration)
 idx <- c(18,22,27,2,13,31) #select 6 countries
-q1 <- decomposition(studentmigration[idx,idx])
+q1 <- skewsymmetry(studentmigration[idx,idx])
 q1$A
 
 

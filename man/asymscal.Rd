@@ -55,9 +55,7 @@ Berrie Zielman
 }
 \note{
 The original algorithm for fitting the asymscal model fits squared distances. This function fits distances and not squared distances. The configuration matrix is normalized to one.
-}
-
-\section{Warning }{Although my experience with fitting this model in the majorization framework is very limited, it appears to converge slowly. I recommend keeping the convergence criteria in the example}
+Although my experience with fitting this model in the majorization framework is limited, it appears to converge slowly. I recommend keeping the convergence criteria in the example}
 
 \examples{
 \dontrun{

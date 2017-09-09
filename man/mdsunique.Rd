@@ -5,7 +5,7 @@
 MDS Model with Unique Dimensions
 }
 \description{
-This MDS model has common and unique dimensions. The common dimensions are shared by all other objects, whereas unique dimension apply to one object. A unique dimension has a non zero value for only one object, the coordinates for the other objects are zero. There are as many unique dimensions as there are objects. An asymmetric version of this model has two sets of unique dimensions: one for the rows and one for the columns. The distance in this model is defined as:
+This MDS model has both common and unique dimensions. The common dimensions are shared by all other objects, whereas unique dimension apply to one object. A unique dimension has a non zero value for only one object, the coordinates for the other objects are zero. There are as many unique dimensions as there are objects. An asymmetric version of this model has two sets of unique dimensions: one for the rows and one for the columns. The distance in this model is defined as:
 \deqn{d_{ij}(X)=\sqrt{\sum_{s=1}^p (x_{is}-x_{js})^2 + r_{i}^{2}+c_{j}^{2}}}.
 }
 \usage{

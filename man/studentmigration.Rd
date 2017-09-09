@@ -5,7 +5,7 @@
 Student Mobility in the Erasmus Program
 }
 \description{
-The table lists the home and destination country of 268.142 students in the academic year 2012-2013. The 33 rows of this table refer to the home country whereas the 33 columns refer to the destination countries. The table gives the number of inbound and outbound students between every pair of countries. The entries in the table are read as follows: 32 students from Bulgaria studied in The Netherlands, 18 students from the Netherlands studied in Bulgaria.
+The table lists the home and destination country of 268.142 students in the academic year 2012-2013 participating in the Erasmus program. The 33 rows of this table refer to the home country whereas the 33 columns refer to the destination countries. The table gives the number of inbound and outbound students between every pair of countries, and the entries in the table are read as follows: 32 students from Bulgaria studied in The Netherlands, 18 students from the Netherlands studied in Bulgaria.
 Macedonia (MK) was excluded from the published table because only one student from Macedonia studie abroad and this country did not receive any students.
 }
 \usage{data(studentmigration)}
