@@ -32,6 +32,7 @@ Convergence criterion for Stress
 }
 \details{
 This function exploits a connection between the INDSCAL model and the asymscal model. This method inherits the methods for plotting an printing from the \code{smacofIndDiff} in the smacof package. Basically, the asymscal takes two steps. First, this function sets up the appropriate dissimilarity and missing data structure for a three-way multidimensional scaling model, then a call to the method \code{smacofIndDiff} in the imported package smacof is made. After correcting for the normalization applied to the data by \code{smacofIndDiff}, the results can be displayed and plotted by the methods in the package \code{smacof}.
+The original algorithm for fitting the asymscal model fits squared distances. This function is based on majorization, and fits distances and not squared distances. The configuration matrix is normalized, the sum of squares of the columns of this matrix are equal to one.
 }
 \value{
   \item{delta}{Observed dissimilarities}
@@ -39,11 +40,11 @@ This function exploits a connection between the INDSCAL model and the asymscal m
   \item{gspace}{Joint configurations aka group stimulus space}
   \item{cweights}{Configuration weights}
   \item{stress}{Stress-1 value}
-  \item{resmat}{Matrix with squared residuals}
+  \item{resmat}{Matrix with residuals}
   \item{rss}{Residual sum-of-squares}
   \item{spp}{Stress per point}
   \item{ndim}{Number of dimensions}
-  \item{model}{Type of smacof model}
+  \item{model}{Type of asymmetric scaling model}
   \item{niter}{Number of iterations}
   \item{nobj}{Number of objects}
 }
@@ -53,10 +54,6 @@ Young, F. W. (1975). An asymmetric Euclidean model for multi-process asymmetric 
 \author{
 Berrie Zielman
 }
-\note{
-The original algorithm for fitting the asymscal model fits squared distances. This function fits distances and not squared distances. The configuration matrix is normalized to one.
-Although my experience with fitting this model in the majorization framework is limited, it appears to converge slowly. I recommend keeping the convergence criteria in the example}
-
 \examples{
 \dontrun{
 data("asymscalexample")

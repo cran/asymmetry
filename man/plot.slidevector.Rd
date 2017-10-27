@@ -37,6 +37,6 @@ Label of y-axis.
 dis <- matrix(c(1,2,3,4,5,6,2,8,9,3), nrow = 5, ncol = 2)   #configuration
 a <- rbind(dis,dis+1.5)                                     #generate slide-vector
 test <- as.matrix(dist(a))[1:5,6:10]                        #extract data
-v <- slidevector(test, dim = 2,itmax = 250, eps = .001)
+v <- slidevector(test, ndim = 2,itmax = 250, eps = .001)
 plot(v)
 }

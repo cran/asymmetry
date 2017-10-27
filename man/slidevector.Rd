@@ -11,12 +11,12 @@ The slide-vector model is a multidimensional scaling model for asymmetric data. 
 
 }
 \usage{
-slidevector(data, dim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
+slidevector(data, ndim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{data}{An asymmetric matrix}
-\item{dim}{The number of dimensions for this model}
+\item{ndim}{The number of dimensions for this model}
 \item{verbose}{Print the history of iterations}
 \item{itmax}{The maximum number of iterations}
 \item{eps}{The convergence criterion for the algorithm}
@@ -37,6 +37,8 @@ The slide-vector model is a special case of the unfolding model. Therefore, the 
   \item{nobs}{The number of observations in this model}
   \item{resid}{A matrix with raw residuals}
   \item{slvec }{Coordinates of the slide-vector}
+  \item{model}{Name of this asymmetric multidimensional scaling model}
+
 }
 \references{
 Zielman, B., and Heiser, W. J. (1993), The analysis of asymmetry by a slide-vector, Psychometrika, 58, 101-114.
@@ -50,7 +52,7 @@ Berrie Zielman
 \examples{
 ## asymmetric distances between English towns
 data(Englishtowns)
-v <- slidevector(Englishtowns,dim = 2,itmax = 250, eps = .001)
+v <- slidevector(Englishtowns, ndim = 2, itmax = 250, eps = .001)
 plot(v)
 }
 \keyword{Models}

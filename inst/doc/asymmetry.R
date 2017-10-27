@@ -62,6 +62,6 @@ hmap(studentmigration[idx,idx], dominance = FALSE, col = my_palette, key = FALSE
 ## ----englishtowns, fig.width = 8, fig.height = 8-------------------------
 
 data(Englishtowns)
-v<-slidevector(Englishtowns,dim = 2,itmax = 250, eps = .001)
+v<-slidevector(Englishtowns, ndim = 2, itmax = 250, eps = .001)
 plot(v,col="blue",ylim=c(-150,300),xlim=c(-150,300))
 

@@ -35,7 +35,7 @@ data("studentmigration")
 mm<-studentmigration
 mm[mm==0]<-.5          # replace zeroes by a small number
 mm <- -log(mm/sum(mm)) # convert similarities to dissimilarities
-v<-mdsunique(mm,dim = 2,itmax = 2100,verbose=TRUE, eps = .0000000001)
+v<-mdsunique(mm,ndim = 2,itmax = 2100,verbose=TRUE, eps = .0000000001)
 plot(v, yplus = .3)
 }
 }

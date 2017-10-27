@@ -1,6 +1,6 @@
 asymscal <- function(data, ndim = 2, start=NULL, itmax = 10000, eps = 1e-10)
 {
-  if (sum(data<0) > 0) stop("data for the slide-vector model should be positive")
+  if (sum(data<0) > 0) stop("data for the asymscal model should be positive")
   if (nrow(data)!=ncol(data)) stop("the same number of rows and columns are expected")
   nrow = nrow(data)
   l <- vector("list", nrow)
@@ -50,7 +50,7 @@ asymscal <- function(data, ndim = 2, start=NULL, itmax = 10000, eps = 1e-10)
   }
   stress <- sum(res^2)
   spp <- colSums(res^2)/stress
-  res <- res^2
+  res <- res
   results <- list(delta = data, obsdiss = asy$delta,
                   gspace = gspace2, cweights = wtemp, stress = stress,
                   resmat = asy$resmat, rss = res, spp = spp, ndim = asy$ndim,
