@@ -5,7 +5,7 @@ print.mdsunique<-
     cat(x$ndim)
     cat("\n")
     cat("Number of objects:       ")
-    cat(x$nobs)
+    cat(x$nobj)
     cat("\n")
     cat("Number of iterations:    ")
     cat(x$niter)

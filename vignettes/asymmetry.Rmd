@@ -7,7 +7,7 @@ output:
     self_contained: yes
 ---
 <!--
-  %\VignetteIndexEntry{Visualizing asymmetry: start here}
+  %\VignetteIndexEntry{Visualizing asymmetry}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 -->

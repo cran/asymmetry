@@ -5,7 +5,7 @@
 Summary method for the slide-vector model
 }
 \description{
-This function extracts the configuration matrix and the slide-vector from the object.
+This function extracts the configuration matrix and the slide-vector from this asymmetric multidimensional scaling object.
 }
 \usage{
 \method{summary}{slidevector}(object, ...)

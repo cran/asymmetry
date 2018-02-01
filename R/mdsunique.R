@@ -17,10 +17,16 @@ mdsunique <-
     colnames(mat) <- paste("D",1:(dim(mat)[2]),sep="")
     pred <- as.matrix(dist(X,upper = TRUE))
     pred <- pred[1:nobs,(nobs+1):(2*nobs)]
-    resid <- data -pred
+    fulldim <- ndim
+    ndim <- fulldim - 2*nobs
+    resid <- data - pred
     confi <- mat[,1:ndim]
+    uni <- diag(X[,(ndim+1):ncol(X)])
+    row <- uni[1:nobs]
+    col <- uni[(nobs+1):(2*nobs)]
     result<-list(ndim=ndim,stress=stress,X=X,confi= confi,resmat = resid,fulldim=ndim,
-                 niter=niter,nobj=nobs, model = "MDS with unique dimensions")
+                 niter=niter,nobj=nobs, model = "MDS with unique dimensions",
+                 unique = uni,row = row, col = col)
     class(result)<-"mdsunique"
     return(result)
   }
