@@ -1,32 +1,72 @@
 mdsunique <-
-  function(data,ndim=2,verbose=FALSE,itmax=125,eps=1e-12){
+  function(data, weight = NULL, ndim = 2, verbose=FALSE, itmax=125, eps=1e-12){
+    # this is the unicity model
     if (sum(data<0) > 0) stop("data for this mds model should be positive")
     #check for number of rows equals number of columns
     if (nrow(data)!=ncol(data)) stop("the same number of rows and columns are expected")
-    hjw <- .jnew("asymmetry/unfolding")
-    dis <- .jcall(hjw, "[[D","unfoldingmodel",.jarray(data,dispatch=TRUE),as.integer(ndim),verbose,as.integer(itmax),as.double(eps))
-    ndim <- .jcall(hjw,"I","getDimension")
-    nobs <- .jcall(hjw,"I","getNobs")
-    niter <- .jcall(hjw,"I","getNiter")
-    stress <- .jcall(hjw,"D","getStress")
-#    res <- t(sapply(.jcall(hjw, "[[D","getConfiguration"),.jevalArray))
-    X = t(sapply(dis,.jevalArray))
-    mat <- X[1:nobs,] #  include unicity
-    if(!is.null(rownames(data)))
-      rownames(mat)<-rownames(data)
+    nobj <- nrow(data)
+    if(is.null(weight))  weight <- 0*data+1
+    if (sum(weight<0) > 0) stop("weight for this model should be positive")
+    if (nrow(weight)!=ncol(weight)) stop("the same number of rows and columns are expected in the weight matrix")
+
+    we <-  rbind(cbind(weight*0,weight),cbind(t(weight),weight*0))
+    v <- diag(rowSums(we))-we
+    da <-  rbind(cbind(data*0,data),cbind(t(data),data*0))
+    ztil <- matrix(runif(nobj*2*ndim),2*nobj,ndim)
+    dist <- as.matrix(dist(ztil))
+    ind <- dist<.000000001
+    dist[ind]<-1
+    BMAT <- we*da/dist
+    BMAT[ind]<-0
+    BMAT <- diag(rowSums(BMAT))-BMAT #VX
+    z <- rbind(diag(nobj),diag(nobj))
+    #  z <- cbind(z,c(rep(1,nobj),rep(0,nobj)))
+    zvz <-  t(z)%*%v%*%z
+    #  nsp <- c(rep(1,nobj),0)%*%t(c(rep(1,nobj),0))/nobj
+    nsp <- c(rep(1,nobj))%*%t(c(rep(1,nobj)))/nobj
+    fdim <- ndim+2*nobj
+    ztil <- cbind(ztil,diag(2*nobj)) #aanpassen
+    zvz_inv <- solve(zvz+nsp)-nsp
+    dist <- as.matrix(dist(ztil))
+    stressold <- sum(weight*(data-dist[1:nobj,(nobj+1):(2*nobj)])^2)
+    for (i in 1:itmax){
+      ind <- dist<.000000001
+      dist[ind]<-1
+      BMAT <- we*da/dist
+      BMAT[ind]<-0
+      BMAT <- diag(rowSums(BMAT))-BMAT #VX
+      ztil <- BMAT%*%ztil
+      ztil[,1:ndim] <- z%*%zvz_inv%*%t(z)%*%ztil[,1:ndim]
+      uniq <- diag(ztil[,(ndim+1):fdim])/diag(v)
+      ztil <- cbind(ztil[,1:ndim],diag(uniq))
+      dist <- as.matrix(dist(ztil))
+      if(verbose)
+        print(sum(weight*(data-dist[1:nobj,(nobj+1):(2*nobj)])^2))
+      stress <- sum(weight*(data-dist[1:nobj,(nobj+1):(2*nobj)])^2)
+      if(stressold - stress < eps) break
+      stressold <- stress
+    }
+    #ztil[,1:ndim] #config matrix
+    mat <- ztil
+    # if(!is.null(rownames(data)))
+    #   rownames(mat)<-rownames(data)
     colnames(mat) <- paste("D",1:(dim(mat)[2]),sep="")
-    pred <- as.matrix(dist(X,upper = TRUE))
-    pred <- pred[1:nobs,(nobs+1):(2*nobs)]
-    fulldim <- ndim
-    ndim <- fulldim - 2*nobs
+
+    pred <- as.matrix(dist(ztil))
+
+    pred <- pred[1:nobj,(nobj+1):(2*nobj)]
+
+    pred <- dist[1:nobj,(nobj+1):(2*nobj)]
+    fulldim <- ndim + 2*nobj
     resid <- data - pred
-    confi <- mat[,1:ndim]
-    uni <- diag(X[,(ndim+1):ncol(X)])
-    row <- uni[1:nobs]
-    col <- uni[(nobs+1):(2*nobs)]
-    result<-list(ndim=ndim,stress=stress,X=X,confi= confi,resmat = resid,fulldim=ndim,
-                 niter=niter,nobj=nobs, model = "MDS with unique dimensions",
-                 unique = uni,row = row, col = col)
+    confi <- mat[1:nobj,1:ndim]
+    uni <- diag(ztil[,(ndim+1):ncol(ztil)])
+    row <- uni[1:nobj]
+    col <- uni[(nobj+1):(2*nobj)]
+    unique <- cbind(row,col)
+    result<-list(ndim=ndim,stress=stress,X=ztil,confi= confi,resmat = resid,fulldim=fulldim,
+                 niter=i,nobj=nobj, model = "MDS with unique dimensions",
+                 unique = unique,row = row, col = col)
     class(result)<-"mdsunique"
     return(result)
   }

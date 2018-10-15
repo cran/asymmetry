@@ -60,8 +60,25 @@ hmap(studentmigration[idx,idx], dominance = FALSE, col = my_palette, key = FALSE
 
 
 ## ----englishtowns, fig.width = 8, fig.height = 8-------------------------
-
 data(Englishtowns)
-v<-slidevector(Englishtowns, ndim = 2, itmax = 250, eps = .001)
-plot(v,col="blue",ylim=c(-150,300),xlim=c(-150,300))
+v<-slidevector(Englishtowns, ndim = 2, itmax = 2500, eps = .0000001, verbose = FALSE)
+plot(v,col="blue",ylim=c(-300,300),xlim=c(-300,300))
+
+
+## ----englishtownsdecomp--------------------------------------------------
+
+q2 <- skewsymmetry(v$resid)
+summary(q2)
+
+
+## ----migrationunique-----------------------------------------------------
+
+data("studentmigration")
+mm<-studentmigration
+mm[mm==0]<-.5          # replace zeroes by a small number
+mm <- -log(mm/sum(mm)) # convert similarities to dissimilarities
+v<-mdsunique(mm, ndim = 2, itmax = 2100, verbose=FALSE, eps = .0000000001)
+plot(v, yplus = .3, ylim = c(-4.5, 4), xlim = c(-4.5, 4))
+
+
 

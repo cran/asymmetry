@@ -5,7 +5,7 @@
 Distance Matrix of Eight English Towns
 }
 \description{
- A datamatrix with 8 rows and 8 columns. The data are distances between eight English towns, this datamatrix is made asymmetric by addding linear skew-symmetric matrix. In this dataset, asymmetry is imposed by perturbing the data.
+ A data matrix with 8 rows and 8 columns. The data are distances between eight English towns, this datamatrix is made asymmetric by adding linear skew-symmetric matrix. In this dataset, asymmetry is imposed by perturbing the data.
 }
 \usage{data("Englishtowns")}
 \references{

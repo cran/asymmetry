@@ -1,25 +1,22 @@
-asymscal <- function(data, ndim = 2, start=NULL, itmax = 10000, eps = 1e-10)
-{
-  if (sum(data<0) > 0) stop("data for the asymscal model should be positive")
-  if (nrow(data)!=ncol(data)) stop("the same number of rows and columns are expected")
-  nrow = nrow(data)
+asymscal <- function(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10){
+  if (sum(data < 0) > 0) stop("data for the asymscal model should be positive")
+  if (nrow(data) != ncol(data)) stop("the same number of rows and columns are expected")
+  nrow <- nrow(data)
   l <- vector("list", nrow)
   dawe <- vector("list", nrow)
   dimscal <- vector("list", nrow)
-  for (i in 1:nrow)
-  {
+  for (i in 1:nrow){
     temp <- data*0
-    temp[,i] <- data[i,]
-    temp[i,] <- data[i,]
+    temp[, i] <- data[i, ]
+    temp[i, ] <- data[i, ]
     l[[i]] <- as.dist(temp)
-    temp[,i] <- rep(1,nrow)
-    temp[i,] <- rep(1,nrow)
-    temp[i,i] <- 0
+    temp[, i] <- rep(1, nrow)
+    temp[i, ] <- rep(1, nrow)
+    temp[i, i] <- 0
     dawe[[i]] <- as.dist(temp)
-
   }
   if(!is.matrix(start))
-    start="torgerson"
+    start <- "torgerson"
   #
   # tweak the smacof normalization
   #
@@ -51,9 +48,12 @@ asymscal <- function(data, ndim = 2, start=NULL, itmax = 10000, eps = 1e-10)
   stress <- sum(res^2)
   spp <- colSums(res^2)/stress
   res <- res
+  resmat <- asy$resmat
+  nobj <- asy$nobj
+  resmat[diag(nobj)==1] <- 0
   results <- list(delta = data, obsdiss = asy$delta,
                   gspace = gspace2, cweights = wtemp, stress = stress,
-                  resmat = asy$resmat, rss = res, spp = spp, ndim = asy$ndim,
+                  resmat = resmat, rss = res, spp = spp, ndim = asy$ndim,
                   model = "ASYMSCAL", niter = asy$niter, nobj = asy$nobj, call = match.call())
   class(results) <- "smacofID"
   results

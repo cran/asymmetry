@@ -11,11 +11,12 @@ The slide-vector model is a multidimensional scaling model for asymmetric data. 
 
 }
 \usage{
-slidevector(data, ndim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
+slidevector(data, weight = NULL, ndim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{data}{An asymmetric matrix}
+\item{weight}{an optional non-negative matrix with weights, if no weights are given all weights are set equal to one}
 \item{ndim}{The number of dimensions for this model}
 \item{verbose}{Print the history of iterations}
 \item{itmax}{The maximum number of iterations}

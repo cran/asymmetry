@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 ```
 
 ##Introduction
-Asymmetric matrices are square. A square matrix has the same number of rows and columns, and the rows and columns refer to the same set of objects. An example is a migration table. Here the rows and columns refer to the same countries. For example, the countries in the rows are the home countries, the columns are the destination countries. These tables can be used to answer two questions. The first question is which countries are similar. For instance, similar countries exchange more students than dissimilar countries because of a cultural or other similarity. The second question concerns which countries are more successful in attracting students. The following script generates data from the Erasmus student exchange program to work with. To keep the results of the analysis readable we work in this example with five countries. 
+Asymmetric matrices are square, and have the same number of rows and columns, which refer to the same set of objects. At least some elements in the upper triangle are different from the corresponding elements in the lower triangle. That is, we have for the asymmetric matrix $Q$ the identity $Q \neq Q^T$, where $Q^T$. denotes the transpose of the matrix $Q$ An example of an asymmetric matrix is a migration table. In this example, the rows and columns refer to the same countries. For example, the countries in the rows are the home countries, the columns are the destination countries. These tables can be used to answer two questions. The first question is which countries are similar. For instance, similar countries exchange more students than dissimilar countries because of a cultural or other similarity. The second question concerns which countries are more successful in attracting students. The following script generates data from the Erasmus student exchange program to work with. To keep the results of the analysis readable we work in this example with five countries. 
 
 ```{r dataexample}
 library("asymmetry")
@@ -126,7 +126,6 @@ hmap(studentmigration[idx,idx], dominance = FALSE, col = my_palette, key = FALSE
 In this heatmap some elements in the upper triangle are blue and some are red, which means that no ordering can give a satisfactory account of the skew-symmetries and that circular triads are present.
 In this table we find a circular triad between Turkey, Latvia, and Bulgaria. There are more Turkish students migrating to Latvia then there are Latvian students migrating to Turkey, there are more Latvian students moving to Bulgaria than there are Bulgarian students moving to Latvia, and finally more Bulgarian students move to Turkey than there are movements in the other direction. 
 
-
 ## Slide-vector model
 The slide vector model is a multidimensional scaling (MDS) model for asymmetric data. MDS fits symmetric distances to data, whereas this model fits modified distances which are asymmetric. A distance model is fitted to the symmetric part of the data whereas the asymmetric part of the data is represented by projections of the coordinates onto the slide-vector. The slide-vector points in the direction of large asymmetries in the data. The distance is modified in such a way that the distance between two points that are parallel  to the slide-vector is larger in the direction of this vector. The distance is smaller in the opposite direction. If the line connecting two points is perpendicular to the slide-vector the difference between the two projections is zero. In this case the distance between the two points is symmetric. The algorithm for fitting this model is derived from the majorization approach to multidimensional scaling.
 
@@ -135,12 +134,34 @@ $$ d_{ij}(X;z)=\sqrt{\sum_{s=1}^p(x_{is}-x_{js}+z_{is})^2}.$$
 
 The squared distances can be decomposed in a linear skew-symmetric and symmetric part.
 $$ d_{ij}^2(X;z)=\sum_{s=1}^p (x_{is}-x_{js})^2+\sum_{s=1}^p z_{is}^2 + 2\sum_{s=1}^p( x_{is}-x_{js})z_{is}.$$
-
-
+The following lines of code generate a two-dimensional representation of the English towns data for the slide-vector model.
 ```{r englishtowns, fig.width = 8, fig.height = 8 }
-
 data(Englishtowns)
-v<-slidevector(Englishtowns, ndim = 2, itmax = 250, eps = .001)
-plot(v,col="blue",ylim=c(-150,300),xlim=c(-150,300))
+v<-slidevector(Englishtowns, ndim = 2, itmax = 2500, eps = .0000001, verbose = FALSE)
+plot(v,col="blue",ylim=c(-300,300),xlim=c(-300,300))
+
+```
+
+A decomposition of the residuals can be obtained using the following lines of code
+```{r englishtownsdecomp }
+
+q2 <- skewsymmetry(v$resid)
+summary(q2)
+
+```
+## MDS with unique dimensions
+
+This MDS model has both common that are shared by all objects and unique dimensions that apply to one object and not to the other objects. The shared dimensions provide a Euclidean map of the objects in low-dimension space, whereas unique dimension apply to one object. A unique dimension has a non zero value for only one object, the coordinates for the other objects are zero. There are as many unique dimensions as there are objects. An asymmetric version of this model has two sets of unique dimensions: one for the rows and one for the columns. The distance in this model is defined as:
+$$d_{ij}(X)=\sqrt{\sum_{s=1}^p (x_{is}-x_{js})^2 + r_{i}^{2}+c_{j}^{2}}.$$
+```{r migrationunique }
+
+data("studentmigration")
+mm<-studentmigration
+mm[mm==0]<-.5          # replace zeroes by a small number
+mm <- -log(mm/sum(mm)) # convert similarities to dissimilarities
+v<-mdsunique(mm, ndim = 2, itmax = 2100, verbose=FALSE, eps = .0000000001)
+plot(v, yplus = .3, ylim = c(-4.5, 4), xlim = c(-4.5, 4))
+
+
 ```
 

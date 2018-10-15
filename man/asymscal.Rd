@@ -10,7 +10,7 @@ This function fits the multidimensional scaling model known as the asymscal mode
 
 }
 \usage{
-asymscal(data, ndim = 2, start=NULL, itmax = 10000, eps = 1e-10)
+asymscal(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,7 +21,7 @@ A matrix with the same number of rows and columns
 The number of dimensions
 }
   \item{start}{
-An optional configuration with starting values
+An optional configuration with starting values, the default is a random start configuration
 }
   \item{itmax}{
 The maximum number of iterations
@@ -57,9 +57,9 @@ Berrie Zielman
 \examples{
 \dontrun{
 data("asymscalexample")
-t<-asymscal(asymscalexample,ndim=2,itmax=10000,eps=1e-10)
+t<-asymscal(asymscalexample, ndim = 2, itmax = 10000, eps = 1e-10)
 t$cweights
-round(t$cweights,3)
+round(t$cweights, 3)
 plot(t, plot.type = "confplot")
 plot(t, plot.type = "bubbleplot")
 plot(t, plot.type = "stressplot")
