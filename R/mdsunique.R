@@ -1,8 +1,6 @@
 mdsunique <-
   function(data, weight = NULL, ndim = 2, verbose=FALSE, itmax=125, eps=1e-12){
-    # this is the unicity model
     if (sum(data<0) > 0) stop("data for this mds model should be positive")
-    #check for number of rows equals number of columns
     if (nrow(data)!=ncol(data)) stop("the same number of rows and columns are expected")
     nobj <- nrow(data)
     if(is.null(weight))  weight <- 0*data+1
@@ -20,12 +18,10 @@ mdsunique <-
     BMAT[ind]<-0
     BMAT <- diag(rowSums(BMAT))-BMAT #VX
     z <- rbind(diag(nobj),diag(nobj))
-    #  z <- cbind(z,c(rep(1,nobj),rep(0,nobj)))
     zvz <-  t(z)%*%v%*%z
-    #  nsp <- c(rep(1,nobj),0)%*%t(c(rep(1,nobj),0))/nobj
     nsp <- c(rep(1,nobj))%*%t(c(rep(1,nobj)))/nobj
     fdim <- ndim+2*nobj
-    ztil <- cbind(ztil,diag(2*nobj)) #aanpassen
+    ztil <- cbind(ztil,diag(2*nobj))
     zvz_inv <- solve(zvz+nsp)-nsp
     dist <- as.matrix(dist(ztil))
     stressold <- sum(weight*(data-dist[1:nobj,(nobj+1):(2*nobj)])^2)
@@ -46,16 +42,12 @@ mdsunique <-
       if(stressold - stress < eps) break
       stressold <- stress
     }
-    #ztil[,1:ndim] #config matrix
     mat <- ztil
-    # if(!is.null(rownames(data)))
-    #   rownames(mat)<-rownames(data)
     colnames(mat) <- paste("D",1:(dim(mat)[2]),sep="")
 
     pred <- as.matrix(dist(ztil))
 
-    pred <- pred[1:nobj,(nobj+1):(2*nobj)]
-
+    pred <- pred[1:nobj,(nobj+1):(2*nobj)] # for the todo list
     pred <- dist[1:nobj,(nobj+1):(2*nobj)]
     fulldim <- ndim + 2*nobj
     resid <- data - pred

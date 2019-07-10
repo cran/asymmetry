@@ -7,7 +7,6 @@ slidevector <-
     if(is.null(weight))  weight <- 0*data+1
     if (sum(weight<0) > 0) stop("weight for the slide-vector model should be positive")
     if (nrow(weight)!=ncol(weight)) stop("the same number of rows and columns are expected in the weight matrix")
-
     we <-  rbind(cbind(weight*0,weight),cbind(t(weight),weight*0))
     v <- diag(rowSums(we))-we
     da <-  rbind(cbind(data*0,data),cbind(t(data),data*0))
@@ -50,7 +49,7 @@ slidevector <-
     pred <- dist[1:nobj,(nobj+1):(2*nobj)]
     resid <- data-pred
     result<-list(ndim=ndim,stress=stress,confi=mat,slvec=Z,resid = resid, niter=niter,
-                 nobs=nobj,pred=pred,model="Slide-vector model",ztil=ztil)
+                 nobs=nobj,nobj=nobj,pred=pred,model="Slide-vector model",ztil=ztil)
     class(result)<-"slidevector"
     return(result)
   }

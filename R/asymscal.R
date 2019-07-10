@@ -37,9 +37,6 @@ asymscal <- function(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10){
   sq <- apply(asy$gspace, 2, function(x) sqrt(sum(x^2)))
   wtemp <- sweep(wtemp,2,sq,"*")
   gspace2 <- sweep(asy$gspace,2,sq,"/")
-  #
-  # calculate residual matrix
-  #
   res <- data
   for (i in 1:nrow)
   {

@@ -35,7 +35,7 @@ The slide-vector model is a special case of the unfolding model. Therefore, the 
   \item{stress }{The raw stress for this model}
   \item{confi}{Returns the configuration matrix of this multidimensional scaling model}
   \item{niter}{The number of iterations for the algorithm to converge}
-  \item{nobs}{The number of observations in this model}
+  \item{nobj}{The number of observations in this model}
   \item{resid}{A matrix with raw residuals}
   \item{slvec }{Coordinates of the slide-vector}
   \item{model}{Name of this asymmetric multidimensional scaling model}
