@@ -40,3 +40,4 @@ test <- as.matrix(dist(a))[1:5, 6:10]                                #extract da
 v <- slidevector(test, ndim = 2, itmax = 250, eps = .001)
 plot(v)
 }
+\keyword{Methods}

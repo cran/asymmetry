@@ -17,11 +17,9 @@ An object of class \code{decomposition}
 Further parameters
 }
 }
-\author{
-Berrie Zielman
-}
 \examples{
 data(Englishtowns)
 q <- skewsymmetry(Englishtowns)
 summary(q)
 }
+\keyword{Methods}

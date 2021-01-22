@@ -6,7 +6,7 @@ asymscal <- function(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10){
   dawe <- vector("list", nrow)
   dimscal <- vector("list", nrow)
   for (i in 1:nrow){
-    temp <- data*0
+    temp <- data * 0
     temp[, i] <- data[i, ]
     temp[i, ] <- data[i, ]
     l[[i]] <- as.dist(temp)
@@ -15,13 +15,13 @@ asymscal <- function(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10){
     temp[i, i] <- 0
     dawe[[i]] <- as.dist(temp)
   }
-  if(!is.matrix(start))
+  if (!is.matrix(start))
     start <- "torgerson"
   #
   # tweak the smacof normalization
   #
   normalizer <- lapply(l,function(x) sqrt(sum(x^2)))
-  asy<- smacofIndDiff(l, weightmat = dawe,init=start, ndim = ndim, itmax = itmax, eps = eps, constraint = "indscal")
+  asy<- smacofIndDiff(l, weightmat = dawe, init = start, ndim = ndim, itmax = itmax, eps = eps, constraint = "indscal")
   wtemp<-matrix(0,nrow,ndim)
   for (i in 1:nrow)
   {

@@ -24,9 +24,6 @@ An asymmetric matrix
   \item{nobj}{The number of objects}
 
 }
-\author{
-Berrie Zielman
-}
 \examples{
 data("Englishtowns")
 Q <- skewsymmetry(Englishtowns)

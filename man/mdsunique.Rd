@@ -44,9 +44,6 @@ mdsunique(data, weight = NULL, ndim = 2, verbose = FALSE, itmax = 125, eps = 1e-
   \item{col}{The unique dimensions for the columns}
   \item{unique}{The unique dimensions}
 }
-\author{ Berrie Zielman
-}
-
 \examples{
 \dontrun{
 data("studentmigration")

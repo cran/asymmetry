@@ -20,4 +20,4 @@ An object of class \code{mdsunique}
 Further arguments
 }
 }
-
+\keyword{Methods}

@@ -39,3 +39,4 @@ v<-mdsunique(mm,ndim = 2,itmax = 2100,verbose=TRUE, eps = .0000000001)
 plot(v, yplus = .3)
 }
 }
+\keyword{Methods}

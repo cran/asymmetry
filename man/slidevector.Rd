@@ -44,9 +44,6 @@ The slide-vector model is a special case of the unfolding model. Therefore, the 
 \references{
 Zielman, B., and Heiser, W. J. (1993), The analysis of asymmetry by a slide-vector, Psychometrika, 58, 101-114.
 }
-\author{
-Berrie Zielman
-}
 \seealso{
  \code{\link{plot.slidevector}}
 }

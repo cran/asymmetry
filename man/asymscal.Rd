@@ -51,9 +51,6 @@ The original algorithm for fitting the asymscal model fits squared distances. Th
 \references{
 Young, F. W. (1975). An asymmetric Euclidean model for multi-process asymmetric data. Paper presented at the U.S.-Japan Seminar on Multidimensional scaling, San Diego, U.S.A.
 }
-\author{
-Berrie Zielman
-}
 \examples{
 \dontrun{
 data("asymscalexample")

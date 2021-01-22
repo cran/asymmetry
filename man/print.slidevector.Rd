@@ -21,3 +21,4 @@ Object of class slidevector
 Further arguments
 }
 }
+\keyword{Methods}

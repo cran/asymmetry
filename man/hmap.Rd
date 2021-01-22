@@ -20,10 +20,6 @@ If true the signs of the skew-symmetric matrix are shown in the heatmap, if set 
 }
   \item{\dots}{Further plot arguments: see \code{\link[gplots]{heatmap.2}} for detailed information.}
 }
-
-\author{
-Berrie Zielman
-}
 \examples{
 data(studentmigration)
 hmap(studentmigration, dominance = TRUE, col = c("red", "white", "blue"))

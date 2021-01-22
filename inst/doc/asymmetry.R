@@ -1,4 +1,4 @@
-## ---- echo = FALSE, message = FALSE, warning=FALSE-----------------------
+## ---- echo = FALSE, message = FALSE, warning=FALSE----------------------------
 library(knitr)
 knitr::opts_chunk$set(
    cache = FALSE,
@@ -9,30 +9,30 @@ knitr::opts_chunk$set(
   tidy = FALSE)
 
 
-## ----dataexample---------------------------------------------------------
+## ----dataexample--------------------------------------------------------------
 library("asymmetry")
 data("studentmigration")
 idx <- c(3,4,25,27,31) #select five countries
 studentmigration[idx,idx]
 
-## ----example-------------------------------------------------------------
+## ----example------------------------------------------------------------------
 q1 <- skewsymmetry(studentmigration[idx,idx])
 q1$A
 
-## ----symm----------------------------------------------------------------
+## ----symm---------------------------------------------------------------------
 q1$S
 
-## ----example2------------------------------------------------------------
+## ----example2-----------------------------------------------------------------
 summary(q1)
 
-## ----clustering----------------------------------------------------------
+## ----clustering---------------------------------------------------------------
 clus <- hclust(as.dist(1/q1$S))
 plot(clus,xlab=NA,sub=NA)
 
-## ----linear--------------------------------------------------------------
+## ----linear-------------------------------------------------------------------
    q1$linear
 
-## ----example3, echo=TRUE-------------------------------------------------
+## ----example3, echo=TRUE------------------------------------------------------
 library(RColorBrewer)
 # creates a color palette from red to blue
 my_palette <- colorRampPalette(c("red", "white", "blue"))(n = 299)
@@ -42,14 +42,14 @@ col_breaks = c(seq(-4000,-.001,length=100),  # negative values are red
 
 hmap(q1, col = my_palette)
 
-## ----example4------------------------------------------------------------
+## ----example4-----------------------------------------------------------------
 data(studentmigration)
 idx <- c(18,22,27,2,13,31) #select 6 countries
 q1 <- skewsymmetry(studentmigration[idx,idx])
 q1$A
 
 
-## ----studentmigration1 , fig.width = 8, fig.height = 8-------------------
+## ----studentmigration1 , fig.width = 8, fig.height = 8------------------------
 # creates a color palette from red to blue
 my_palette <- colorRampPalette(c("red", "white", "blue"))(n = 299)
 col_breaks = c(seq(-4000,-.001,length=100),  # negative values are red
@@ -59,19 +59,19 @@ data(studentmigration)
 hmap(studentmigration[idx,idx], dominance = FALSE, col = my_palette, key = FALSE, xlab = "Destination country", ylab = "Home country", colsep = c(1:6), rowsep = c(1:6))
 
 
-## ----englishtowns, fig.width = 8, fig.height = 8-------------------------
+## ----englishtowns, fig.width = 8, fig.height = 8------------------------------
 data(Englishtowns)
 v<-slidevector(Englishtowns, ndim = 2, itmax = 2500, eps = .0000001, verbose = FALSE)
 plot(v,col="blue",ylim=c(-300,300),xlim=c(-300,300))
 
 
-## ----englishtownsdecomp--------------------------------------------------
+## ----englishtownsdecomp-------------------------------------------------------
 
 q2 <- skewsymmetry(v$resid)
 summary(q2)
 
 
-## ----migrationunique-----------------------------------------------------
+## ----migrationunique----------------------------------------------------------
 
 data("studentmigration")
 mm<-studentmigration
