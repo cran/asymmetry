@@ -2,29 +2,33 @@
 \alias{asymscal}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-asymscal
+Weighted Euclidean Model for Asymmetric Matrices
 }
 \description{
-This function fits the multidimensional scaling model known as the asymscal model. This model is an extension of the symmetric Euclidean distance model proposed by Young (1975). The model is fitted in a stress majorization framework called SMACOF, whereas Young fitted this model using a least squares algorithm. Asymmetry is modelled by differential weighting of the dimensions of a multidimensional scaling configuration. When a subject compares object \emph{i} to \emph{j} he or she may use different weights when comparing object \emph{j} to \emph{i} In addition to these weights, the locations of the objects are jointly estimated from the data.
+This function fits a weighted multidimensional scaling model that is known as the asymscal model. This model is an extension of the symmetric Euclidean distance model proposed by Young (1975). The model is fitted in a stress majorization framework called SMACOF, whereas Young fitted this model using a least squares algorithm. Asymmetry is modelled by differential weighting of the dimensions of a multidimensional scaling configuration. When a subject compares object \emph{i} to \emph{j} he or she may use different weights when comparing object \emph{j} to \emph{i} In addition to these weights, the locations of the objects are jointly estimated from the data.
 \deqn{d_{ij}(X)=\sqrt{\sum_{s=1}^pv_{is}(x_{is}-x_{js})^2}.}
 
 }
 \usage{
-asymscal(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10)
+asymscal(data, ndim = 2, start = NULL, verbose = FALSE, itmax = 10000, eps = 1e-10)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-A matrix with the same number of rows and columns
+Asymmetric dissimilarity matrix
 }
   \item{ndim}{
-The number of dimensions
+Number of dimensions
 }
   \item{start}{
-An optional configuration with starting values, the default is a random start configuration
+Optional configuration with starting values, the default is a random start configuration
 }
+  \item{verbose}{
+If TRUE, stress values during the iterations are printed
+}
+
   \item{itmax}{
-The maximum number of iterations
+Maximum number of iterations
 }
   \item{eps}{
 Convergence criterion for Stress

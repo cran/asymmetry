@@ -1,14 +1,17 @@
-\name{plot.slidevector}
+\name{plot}
 \alias{plot.slidevector}
+\alias{plot.mdsunique}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Configuration Plot for the Slide-vector Model
+Plotmethod for Multidimensional sScaling models
 }
 \description{
 Method for a two-dimensional plot of the model. Available rownames are plotted as labels above the points. The slide-vector is shown as an arrow.
 }
 \usage{
 \method{plot}{slidevector}(x, plot.dim = c(1, 2), yplus = 0, xlab, ylab, ...)
+\method{plot}{mdsunique}(x, plot.dim = c(1, 2), yplus = 0, xlab, ylab, ...)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

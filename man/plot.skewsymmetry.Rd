@@ -5,7 +5,7 @@
 Plotting method for the skew-symmetric part of an asymmetric matrix
 }
 \description{
-This plotting method provides a multidimensional representation of skew-symmetry based on the singular value decomposition (SVD). The properties of the SVD of a skew-symmetric matrix were given by Gower (1977). In addition, this paper also provides guidelines for interpretation of the diagrams obtained by plotting the pairs of singular vectors. These singular vectors come in pairs with equal singular values. The diagrams are not interpreted by comparing distances between point as is usual in multidimensional scaling, but by comparing areas formed by two points and the origin. The singular vectors span a plane, and the area of the triangle between two points and the origin represents skew-symmetry.
+This plotting method provides a multidimensional representation of skew-symmetry based on the singular value decomposition (SVD). The properties of the SVD of a skew-symmetric matrix were given by Gower (1977) where also the guidelines for the interpretation of diagrams obtained by plotting pairs of singular vectors is described. The singular vectors of a skew-symmetric matrix come in pairs with equal singular values. The diagrams are not interpreted by comparing distances between point as is usual in multidimensional scaling, but by comparing areas formed by two points and the origin. The singular vectors span a plane, and the area of the triangle between two points and the origin represents skew-symmetry.
 The sign of the skew-symmetry between two points is modelled by a direction in the plane. Going clockwise the area between two points and the origin is negative, goint counter clockwise the area is positive.
 }
 \usage{

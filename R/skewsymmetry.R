@@ -22,7 +22,7 @@ skewsymmetry <- function(x)
   if(!is.null(rownames(x)))
     rownames(Svectors)<-rownames(x)
 
-  lk <- list(S = S, A = A, linear = lin, sv = Svectors, nobj = nobj)
+  lk <- list(S = S, A = A, linear = lin, sv = Svectors, sval = s$d, nobj = nobj)
   class(lk) <- "skewsymmetry"
   lk
 }

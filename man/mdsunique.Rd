@@ -1,29 +1,36 @@
 \name{mdsunique}
 \alias{mdsunique}
+\alias{print.mdsunique}
+\alias{summary.mdsunique}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 MDS Model with Unique Dimensions
 }
 \description{
-This MDS model has both common and unique dimensions. The common dimensions are shared by all other objects, whereas unique dimension apply to one object. A unique dimension has a non zero value for only one object, the coordinates for the other objects are zero. There are as many unique dimensions as there are objects. An asymmetric version of this model has two sets of unique dimensions: one for the rows and one for the columns. The distance in this model is defined as:
+This asymmetric MDS model proposed by Holman (1979) and further analyzed by Bentler & Weeks (1982)  has both common and unique dimensions. The common dimensions are shared by all other objects, whereas unique dimension apply to one object. A unique dimension has a non zero value for only one object, the coordinates for the other objects are zero. There are as many unique dimensions as there are objects. An asymmetric version of this model has two sets of unique dimensions: one for the rows and one for the columns. The distance in this model is defined as:
 \deqn{d_{ij}(X)=\sqrt{\sum_{s=1}^p (x_{is}-x_{js})^2 + r_{i}^{2}+c_{j}^{2}}.}
 }
 \usage{
 mdsunique(data, weight = NULL, ndim = 2, verbose = FALSE, itmax = 125, eps = 1e-12)
+
 }
 %- maybe also 'usage' for other objects documented here.
+
+
+
 \arguments{
-  \item{data}{ A data matrix
+  \item{data}{ Asymmetric dissimilarity matrix
+
 %%     ~~Describe \code{data} here~~
 }
-  \item{weight}{an optional non-negative matrix with weights, if no weights are given all weights are set equal to one}
-  \item{ndim}{ The number of dimensions
+  \item{weight}{Optional non-negative matrix with weights, if no weights are given all weights are set equal to one}
+  \item{ndim}{Number of dimensions
 %%     ~~Describe \code{dim} here~~
 }
   \item{verbose}{ If true, prints the iteration history to screen
 %%     ~~Describe \code{verbose} here~~
 }
-  \item{itmax}{   Maximum number of iterations
+  \item{itmax}{Maximum number of iterations
 %%     ~~Describe \code{itmax} here~~
 }
   \item{eps}{  Convergence criterion for Stress
@@ -31,8 +38,8 @@ mdsunique(data, weight = NULL, ndim = 2, verbose = FALSE, itmax = 125, eps = 1e-
 }
 }
 \value{
-  \item{ndim }{The number of dimensions}
-  \item{fulldim }{The number of dimensions of the full model}
+  \item{ndim }{Number of dimensions of the configuration}
+  \item{fulldim }{Number of dimensions of the full model, this equals \code{ndim} + the number of rows + the number of columns}
   \item{stress }{The raw stress for this model}
   \item{confi}{Returns the configuration matrix of shared dimensions of this multidimensional scaling model}
   \item{X}{Returns the configuration matrix of the full model consisting of shared and unique dimensions}

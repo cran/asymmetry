@@ -1,10 +1,10 @@
 mdsunique <-
   function(data, weight = NULL, ndim = 2, verbose=FALSE, itmax=125, eps=1e-12){
-    if (sum(data<0) > 0) stop("data for this mds model should be positive")
+    if (sum(data<0) > 0) stop("data for this MDS model should be positive")
     if (nrow(data)!=ncol(data)) stop("the same number of rows and columns are expected")
     nobj <- nrow(data)
     if(is.null(weight))  weight <- 0*data+1
-    if (sum(weight<0) > 0) stop("weight for this model should be positive")
+    if (sum(weight<0) > 0) stop("weights for this model should be positive")
     if (nrow(weight)!=ncol(weight)) stop("the same number of rows and columns are expected in the weight matrix")
 
     we <-  rbind(cbind(weight*0,weight),cbind(t(weight),weight*0))
@@ -61,4 +61,49 @@ mdsunique <-
                  unique = unique,row = row, col = col)
     class(result)<-"mdsunique"
     return(result)
+  }
+
+plot.mdsunique <-
+  function(x, plot.dim=c(1,2), yplus=0, xlab, ylab, ...) {
+    #
+    # add defaults
+    #
+    x1 <- plot.dim[1]
+    y1 <- plot.dim[2]
+    if (missing(xlab)) xlab <- paste("Dimension", x1,sep = " ") else xlab <- xlab
+    if (missing(ylab)) ylab <- paste("Dimension", y1,sep = " ") else ylab <- ylab
+    plot(x$confi[,x1], x$confi[,y1], xlab=xlab,ylab=ylab, ...)
+    if(!is.null(rownames(x$confi))){
+      text(x$confi[,x1], yplus+x$confi[,y1], rownames(x$confi))
+    } else {
+      text(x$confi[,x1], yplus+x$confi[,y1], c(1:x$nobs))
+    }
+  }
+
+print.mdsunique<-
+  function(x,...)
+  {
+    cat("Dimensions:              ")
+    cat(x$ndim)
+    cat("\n")
+    cat("Number of objects:       ")
+    cat(x$nobj)
+    cat("\n")
+    cat("Number of iterations:    ")
+    cat(x$niter)
+    cat("\n")
+    cat("Stress:                   ")
+    cat(x$stress)
+    cat("\n")
+  }
+summary.mdsunique <-
+  function(object,...)
+  {
+    cat("\n")
+    cat("Configurations:\n")
+    xda <- cbind(object$confi,object$row,object$col)
+    nam <- colnames(object$confi)
+    names <- c(nam,"Row","Col")
+    colnames(xda) <- names
+    print(round(xda,4))
   }

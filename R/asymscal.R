@@ -1,4 +1,4 @@
-asymscal <- function(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10){
+asymscal <- function(data, ndim = 2, start = NULL, verbose = FALSE, itmax = 10000, eps = 1e-10){
   if (sum(data < 0) > 0) stop("data for the asymscal model should be positive")
   if (nrow(data) != ncol(data)) stop("the same number of rows and columns are expected")
   nrow <- nrow(data)
@@ -10,7 +10,7 @@ asymscal <- function(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10){
     temp[, i] <- data[i, ]
     temp[i, ] <- data[i, ]
     l[[i]] <- as.dist(temp)
-    temp[, i] <- rep(1, nrow)
+    temp[, i] <- rep(1, nrow) #unit weights
     temp[i, ] <- rep(1, nrow)
     temp[i, i] <- 0
     dawe[[i]] <- as.dist(temp)
@@ -48,6 +48,9 @@ asymscal <- function(data, ndim = 2, start = NULL, itmax = 10000, eps = 1e-10){
   resmat <- asy$resmat
   nobj <- asy$nobj
   resmat[diag(nobj)==1] <- 0
+  if(verbose)
+    print(stress)
+
   results <- list(delta = data, obsdiss = asy$delta,
                   gspace = gspace2, cweights = wtemp, stress = stress,
                   resmat = resmat, rss = res, spp = spp, ndim = asy$ndim,

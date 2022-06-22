@@ -17,7 +17,7 @@ The Erasmus program is a student exchange program from the European Union. Three
 The 2-letter codes shown below are supplied by the ISO (International Organization for Standardization). Country codes are given here: \href{http://publications.europa.eu/code/pdf/370000en.htm}{Countrycodes}
 }
 \source{
-\href{https://ec.europa.eu/education/}{https://ec.europa.eu/education/}
+\href{https://education.ec.europa.eu}{https://education.ec.europa.eu}
 }
 \note{ Macedonia has been removed from this table because only one student from
 this country participated in the program, and no students moved to Macedonia.}
