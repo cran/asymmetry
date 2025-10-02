@@ -7,7 +7,7 @@
 MDS Model with Unique Dimensions
 }
 \description{
-This asymmetric MDS model proposed by Holman (1979) and further analyzed by Bentler & Weeks (1982)  has both common and unique dimensions. The common dimensions are shared by all other objects, whereas unique dimension apply to one object. A unique dimension has a non zero value for only one object, the coordinates for the other objects are zero. There are as many unique dimensions as there are objects. An asymmetric version of this model has two sets of unique dimensions: one for the rows and one for the columns. The distance in this model is defined as:
+This asymmetric MDS model proposed by Holman (1979) and is related to a constrained scaling model developed by Bentler & Weeks (1982).The model has two sets of dimensions, shared or common dimensions and the other set are unique dimensions. There are common dimensions that apply to all objects in the analysis, and unique dimensions that apply to one object and not the other objects. A unique dimension has a non zero value for only one object, the coordinates for the other objects are zero. There are as many unique dimensions as there are objects. An asymmetric version of this model has two sets of unique dimensions: one for the rows and one for the columns. The distance in this model is defined as:
 \deqn{d_{ij}(X)=\sqrt{\sum_{s=1}^p (x_{is}-x_{js})^2 + r_{i}^{2}+c_{j}^{2}}.}
 }
 \usage{

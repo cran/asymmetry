@@ -14,7 +14,7 @@ Macedonia (MK) was excluded from the published table because only one student fr
 }
 \details{
 The Erasmus program is a student exchange program from the European Union. Three million students had taken part since the start of the program in 1987. To join the program a student has study at least three months or do an internship of at least two months in another country.
-The 2-letter codes shown below are supplied by the ISO (International Organization for Standardization). Country codes are given here: \href{http://publications.europa.eu/code/pdf/370000en.htm}{Countrycodes}
+The 2-letter codes shown below are supplied by the ISO (International Organization for Standardization). Country codes are given here: \href{https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes}{Countrycodes}
 }
 \source{
 \href{https://education.ec.europa.eu}{https://education.ec.europa.eu}

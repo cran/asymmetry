@@ -5,7 +5,7 @@
 Heatmap for skew-symmetric data
 }
 \description{
-This heatmap displays the values of a skew-symmetric matrix by colors. The option \code{dominance} orders the rows and columns of the matrix in such a way that the values in the uppertriangle are positive and the values in the lower triangle are negative. The order is calculated from the row-sums of the signs obtained from the skew-symmetric matrix.
+This heatmap displays the values of a skew-symmetric matrix by colors. The option \code{dominance} orders the rows and columns of the matrix in such a way that the values in the uppertriangle are (approximately) positive and the values in the lower triangle are negative. The order is calculated from the row-sums of the signs of the elements of the skew-symmetric matrix.
 }
 \usage{
 hmap(x, dominance = FALSE, ...)

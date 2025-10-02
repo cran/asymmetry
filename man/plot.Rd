@@ -3,7 +3,7 @@
 \alias{plot.mdsunique}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Plotmethod for Multidimensional sScaling models
+Plotmethod for Multidimensional Scaling models
 }
 \description{
 Method for a two-dimensional plot of the model. Available rownames are plotted as labels above the points. The slide-vector is shown as an arrow.

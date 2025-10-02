@@ -7,7 +7,7 @@ output:
     self_contained: yes
 ---
 <!--
-  %\VignetteIndexEntry{Visualizing asymmetry}
+  %\VignetteIndexEntry{Visualizing Asymmetry}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 -->
@@ -23,8 +23,15 @@ knitr::opts_chunk$set(
 
 ```
 
-##Introduction
-Asymmetric matrices are square, and have the same number of rows and columns, which refer to the same set of objects. At least some elements in the upper triangle are different from the corresponding elements in the lower triangle. That is, we have for the asymmetric matrix $Q$ the identity $Q \neq Q^T$, where $Q^T$. denotes the transpose of the matrix $Q$ An example of an asymmetric matrix is a migration table. In this example, the rows and columns refer to the same countries. For example, the countries in the rows are the home countries, the columns are the destination countries. These tables can be used to answer two questions. The first question is which countries are similar. For instance, similar countries exchange more students than dissimilar countries because of a cultural or other similarity. The second question concerns which countries are more successful in attracting students. The following script generates data from the Erasmus student exchange program to work with. To keep the results of the analysis readable we work in this example with five countries. 
+##  Introduction
+
+Asymmetric matrices are square matrices with an equal number of rows and columns, each referring to the same set of objects. In such matrices, at least some elements in the upper triangle differ from their corresponding elements in the lower triangle. Formally, for an asymmetric matrix $Q$, we have $Q \neq Q^T$, where $Q^T$ represents the transpose of matrix $Q$.
+
+A practical example of an asymmetric matrix is a migration table, where both rows and columns represent the same countries. In this context, rows indicate home countries, while columns represent destination countries. These tables can be analysed to address two key questions:
+Which countries are similar? For instance, countries that exchange more students often share cultural or other similarities.
+Which countries are more successful in attracting students? This highlights the appeal of specific countries as study destinations.
+
+The following script generates data from the Erasmus student exchange program for analysis. To maintain clarity in the results, this example focuses on five countries.
 
 ```{r dataexample}
 library("asymmetry")
@@ -164,4 +171,84 @@ plot(v, yplus = .3, ylim = c(-4.5, 4), xlim = c(-4.5, 4))
 
 
 ```
+
+
+## Further scaling
+
+```{r slide-explain, echo=FALSE, fig.width = 10, fig.height = 8 }
+par(pty="s",mfrow=c(1,2))
+rows <- 6
+m <- matrix(c(2,0,-1.5,3,4,5,4,3,-1,-2,4,-1.5),nrow=6,2)
+plot(m, xlab = "dimension 1", ylab = "dimension 2", xlim = c(-2,7), ylim = c(-2,7))
+slope <- -.45
+intercept <- 0
+negslope <- -1/slope
+abline(intercept,slope, col ="pink",lty=2)
+arrows(0,0,2,intercept+slope*2,col ="red")
+#abline(4-negslope*2,negslope)
+neginter <- m[6,2]-negslope*m[6,1]
+#abline(m[6,2]-negslope*m[6,1],negslope)
+s1 <- (intercept-neginter)/(negslope-slope)
+s2 <- intercept + s1*slope
+segments(s1,s2,m[6,1],m[6,2])
+#segments(4,3,2,4)
+for (i in 1:rows)
+{
+neginter <- m[i,2]-negslope*m[i,1]
+s1 <- (intercept-neginter)/(negslope-slope)
+s2 <- intercept + s1*slope
+segments(s1,s2,m[i,1],m[i,2],col = "blue")
+	
+}
+labels <- c("A","B","C","D","E","F")
+for (i in 1:rows)
+{
+
+text(-.15+m[i,1],.3+m[i,2],labels[i])
+}
+#
+# second application
+#
+plot(m, xlab = "dimension 1", ylab = "dimension 2", xlim = c(-2,7), ylim = c(-2,7))
+slope <- .75
+intercept <- 0
+negslope <- -1/slope
+abline(intercept,slope, col ="pink",lty=2)
+arrows(0,0,2,intercept+slope*2,col ="red")
+#abline(4-negslope*2,negslope)
+neginter <- m[6,2]-negslope*m[6,1]
+#abline(m[6,2]-negslope*m[6,1],negslope)
+s1 <- (intercept-neginter)/(negslope-slope)
+s2 <- intercept + s1*slope
+segments(s1,s2,m[6,1],m[6,2])
+#segments(4,3,2,4)
+for (i in 1:rows)
+{
+neginter <- m[i,2]-negslope*m[i,1]
+s1 <- (intercept-neginter)/(negslope-slope)
+s2 <- intercept + s1*slope
+segments(s1,s2,m[i,1],m[i,2],col = "blue")
+	
+}
+labels <- c("A","B","C","D","E","F")
+for (i in 1:rows)
+{
+
+text(.05+m[i,1],.3+m[i,2],labels[i])
+}
+```
+
+
+## ASYMSCAL
+The ASYMSCAL model is a weighted Euclidean model proposed by Young. The model is a distance model with weights for each row of the datatable. These weights stretch or shrink the dimensions of the model, and if they are varying asymmetry is predicted by the model. If the weights are all equal, the distances are symmetric resulting in the standard Euclidean distance model.
+
+The optimization problem finds an  $n\times p$ matrix $X$, and an $n\times p$ matrix \(V\) such that \(d_{ij}(X)\approx q_{ij}\), where
+\begin{equation}
+\label{eq:dist}
+d_{ij}(X)=\sqrt{\sum_{s=1}^pv_{is}(x_{is}-x_{js})^2}.
+\end{equation}
+The index $s=1,\ldots,p$ denotes the number of dimensions in the Euclidean 
+space. The elements of $X$ are called \emph{configurations} of the objects, and the elements of $V$ are called \emph{weights}. The weights $v_{is}$ in this equation models the asymmetry. The direction of the comparison is important in this analysis, when  $i$ is compared to $j$ weight $v_{is}$ is applied to dimension $s$, whereas weight $v_{js}$ is applied to dimension $s$ when $j$ is compared to $i$ resulting in an asymmetric relation between $i$ and $j$. The distance between $i$ and $j$ is symmetric if the weights are equal.
+
+
 
