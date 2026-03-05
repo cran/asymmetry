@@ -60,7 +60,6 @@ slidevector <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
                       2)
       if (verbose)
         print(stress)
-      fu <- stressold - stress
       if (stressold - stress < eps)
         break
       stressold <- stress

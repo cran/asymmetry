@@ -31,7 +31,7 @@ A practical example of an asymmetric matrix is a migration table, where both row
 Which countries are similar? For instance, countries that exchange more students often share cultural or other similarities.
 Which countries are more successful in attracting students? This highlights the appeal of specific countries as study destinations.
 
-The following script generates data from the Erasmus student exchange program for analysis. To maintain clarity in the results, this example focuses on five countries.
+The following script generates data from the Erasmus student exchange program for analysis. To maintain clarity in the results, this example shows only five countries.
 
 ```{r dataexample}
 library("asymmetry")
@@ -173,70 +173,6 @@ plot(v, yplus = .3, ylim = c(-4.5, 4), xlim = c(-4.5, 4))
 ```
 
 
-## Further scaling
-
-```{r slide-explain, echo=FALSE, fig.width = 10, fig.height = 8 }
-par(pty="s",mfrow=c(1,2))
-rows <- 6
-m <- matrix(c(2,0,-1.5,3,4,5,4,3,-1,-2,4,-1.5),nrow=6,2)
-plot(m, xlab = "dimension 1", ylab = "dimension 2", xlim = c(-2,7), ylim = c(-2,7))
-slope <- -.45
-intercept <- 0
-negslope <- -1/slope
-abline(intercept,slope, col ="pink",lty=2)
-arrows(0,0,2,intercept+slope*2,col ="red")
-#abline(4-negslope*2,negslope)
-neginter <- m[6,2]-negslope*m[6,1]
-#abline(m[6,2]-negslope*m[6,1],negslope)
-s1 <- (intercept-neginter)/(negslope-slope)
-s2 <- intercept + s1*slope
-segments(s1,s2,m[6,1],m[6,2])
-#segments(4,3,2,4)
-for (i in 1:rows)
-{
-neginter <- m[i,2]-negslope*m[i,1]
-s1 <- (intercept-neginter)/(negslope-slope)
-s2 <- intercept + s1*slope
-segments(s1,s2,m[i,1],m[i,2],col = "blue")
-	
-}
-labels <- c("A","B","C","D","E","F")
-for (i in 1:rows)
-{
-
-text(-.15+m[i,1],.3+m[i,2],labels[i])
-}
-#
-# second application
-#
-plot(m, xlab = "dimension 1", ylab = "dimension 2", xlim = c(-2,7), ylim = c(-2,7))
-slope <- .75
-intercept <- 0
-negslope <- -1/slope
-abline(intercept,slope, col ="pink",lty=2)
-arrows(0,0,2,intercept+slope*2,col ="red")
-#abline(4-negslope*2,negslope)
-neginter <- m[6,2]-negslope*m[6,1]
-#abline(m[6,2]-negslope*m[6,1],negslope)
-s1 <- (intercept-neginter)/(negslope-slope)
-s2 <- intercept + s1*slope
-segments(s1,s2,m[6,1],m[6,2])
-#segments(4,3,2,4)
-for (i in 1:rows)
-{
-neginter <- m[i,2]-negslope*m[i,1]
-s1 <- (intercept-neginter)/(negslope-slope)
-s2 <- intercept + s1*slope
-segments(s1,s2,m[i,1],m[i,2],col = "blue")
-	
-}
-labels <- c("A","B","C","D","E","F")
-for (i in 1:rows)
-{
-
-text(.05+m[i,1],.3+m[i,2],labels[i])
-}
-```
 
 
 ## ASYMSCAL
@@ -245,7 +181,7 @@ The ASYMSCAL model is a weighted Euclidean model proposed by Young. The model is
 The optimization problem finds an  $n\times p$ matrix $X$, and an $n\times p$ matrix \(V\) such that \(d_{ij}(X)\approx q_{ij}\), where
 \begin{equation}
 \label{eq:dist}
-d_{ij}(X)=\sqrt{\sum_{s=1}^pv_{is}(x_{is}-x_{js})^2}.
+d_{ij}(X)=\sqrt{\sum_{s=1}^pv_{is}^2(x_{is}-x_{js})^2}.
 \end{equation}
 The index $s=1,\ldots,p$ denotes the number of dimensions in the Euclidean 
 space. The elements of $X$ are called \emph{configurations} of the objects, and the elements of $V$ are called \emph{weights}. The weights $v_{is}$ in this equation models the asymmetry. The direction of the comparison is important in this analysis, when  $i$ is compared to $j$ weight $v_{is}$ is applied to dimension $s$, whereas weight $v_{js}$ is applied to dimension $s$ when $j$ is compared to $i$ resulting in an asymmetric relation between $i$ and $j$. The distance between $i$ and $j$ is symmetric if the weights are equal.
