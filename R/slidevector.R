@@ -7,7 +7,11 @@ slidevector <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
       stop("the same number of rows and columns are expected in the data matrix")
     nobj <- nrow(data)
     if (is.null(weight))
-      weight <- 0 * data + 1
+    {
+      weight <- matrix(1, nobj, nobj)
+      weight[is.na(data)] <- 0
+      data[is.na(data)] <- 1
+    }
     if (sum(weight < 0) > 0)
       stop("weight for the slide-vector model should be positive")
     if (nrow(weight) != ncol(weight))
@@ -72,7 +76,7 @@ slidevector <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
       X[, 1] <- zvz_inv %*% t(z) %*% zup[, 1]
       X[1:nobj, 2:ndim] <- zvz_inv_s %*% t(zsym) %*% zup[, 2:ndim]
     } else {
-      X <- zvz_inv %*% t(z) %*% zup #moet v tussen
+      X <- zvz_inv %*% t(z) %*% zup #v implicitly included in zup
     }
     ## end
     mat <- X[1:nobj,]
@@ -88,12 +92,13 @@ slidevector <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
         stress = stress,
         confi = mat,
         slvec = Z,
-        resid = resid,
+        resmat = resid,
         niter = niter,
         nobj = nobj,
         pred = pred,
         model = "Slide-vector model",
-        ztil = ztil
+        ztil = ztil,
+        call = match.call()
       )
     class(result) <- "slidevector"
     return(result)
@@ -101,18 +106,22 @@ slidevector <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
 print.slidevector <-
   function(x, ...)
   {
+    cat("\nCall: ")
+    print(x$call)
+    cat("\n")
     cat("Dimensions:              ")
     cat(x$ndim)
     cat("\n")
     cat("Number of objects:       ")
-    cat(x$nobs)
+    cat(x$nobj)
     cat("\n")
     cat("Number of iterations:    ")
     cat(x$niter)
     cat("\n")
-    cat("Stress:                   ")
+    cat("Stress:                  ")
     cat(x$stress)
     cat("\n")
+
   }
 summary.slidevector <-
   function(object, ...)

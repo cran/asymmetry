@@ -10,7 +10,7 @@ This function fits a weighted multidimensional scaling model that is known as th
 
 }
 \usage{
-asymscal(data, ndim = 2, start = NULL, verbose = FALSE, itmax = 10000, eps = 1e-10)
+asymscal(data, ndim = 2, start = NULL, verbose = FALSE, itmax = 125, eps = 1e-10)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -58,12 +58,9 @@ Young, F. W. (1975). An asymmetric Euclidean model for multi-process asymmetric 
 \examples{
 \dontrun{
 data("asymscalexample")
-t<-asymscal(asymscalexample, ndim = 2, itmax = 10000, eps = 1e-10)
+t <- asymscal(asymscalexample, ndim = 2, itmax = 125, eps = 1e-10)
 t$cweights
-round(t$cweights, 3)
 plot(t, plot.type = "confplot")
-plot(t, plot.type = "bubbleplot")
-plot(t, plot.type = "stressplot")
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

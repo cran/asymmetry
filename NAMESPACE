@@ -1,6 +1,7 @@
 exportPattern("^[[:alpha:]]+")
 import(smacof)
 importFrom("graphics", "arrows", "plot", "text")
+importFrom("grDevices", "cm.colors")
 importFrom("methods", "is")
 importFrom("stats", "as.dist", "runif", "dist", "heatmap")
 export(slidevector)

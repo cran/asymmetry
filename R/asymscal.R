@@ -1,21 +1,21 @@
 asymscal <- function(data, ndim = 2,  start = NULL, verbose = FALSE,
-                     itmax = 10000, eps = 1e-10)
+                     itmax = 125, eps = 1e-10)
   {
     if (sum(data < 0) > 0)
       stop("data for the asymscal model should be positive")
     if (nrow(data) != ncol(data))
       stop("the same number of rows and columns are expected")
-    nrow <- nrow(data)
-    l <- vector("list", nrow)
-    dawe <- vector("list", nrow)
-    dimscal <- vector("list", nrow)
-    for (i in 1:nrow) {
+    nobj <- nrow(data)
+    l <- vector("list", nobj)
+    dawe <- vector("list", nobj)
+    dimscal <- vector("list", nobj)
+    for (i in 1:nobj) {
       temp <- data * 0
       temp[, i] <- data[i,]
       temp[i,] <- data[i,]
       l[[i]] <- as.dist(temp)
-      temp[, i] <- rep(1, nrow) #unit weights
-      temp[i,] <- rep(1, nrow)
+      temp[, i] <- rep(1, nobj) #unit weights
+      temp[i,] <- rep(1, nobj)
       temp[i, i] <- 0
       dawe[[i]] <- as.dist(temp)
     }
@@ -36,11 +36,11 @@ asymscal <- function(data, ndim = 2,  start = NULL, verbose = FALSE,
         eps = eps,
         constraint = "indscal"
       )
-    wtemp <- matrix(0, nrow, ndim)
-    for (i in 1:nrow)
+    wtemp <- matrix(0, nobj, ndim)
+    for (i in 1:nobj)
     {
       dimscal[[i]] <-
-        asy$cweights[[i]] * normalizer[[i]] / sqrt(.5 * nrow * (nrow - 1))
+        asy$cweights[[i]] * normalizer[[i]] / sqrt(.5 * nobj * (nobj - 1))
       for (j in 1:ndim)
       {
         wtemp[i, j] <- dimscal[[i]][j, j]
@@ -54,13 +54,12 @@ asymscal <- function(data, ndim = 2,  start = NULL, verbose = FALSE,
     wtemp <- sweep(wtemp, 2, sq, "*")
     gspace2 <- sweep(asy$gspace, 2, sq, "/")
     res <- data
-    for (i in 1:nrow)
+    for (i in 1:nobj)
     {
       res[i, ] <- res[i, ] - as.matrix(dist(gspace2 %*% diag(wtemp[i, ])))[i, ]
     }
     stress <- sum(res ^ 2)
     spp <- colSums(res ^ 2) / stress
-    res <- res
     resmat <- asy$resmat
     nobj <- asy$nobj
     resmat[diag(nobj) == 1] <- 0

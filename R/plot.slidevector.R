@@ -19,6 +19,6 @@ plot.slidevector <- function(x, plot.dim = c(1, 2), yplus = 0,
     if (!is.null(rownames(x$confi))) {
       text(x$confi[, x1], yplus + x$confi[, y1], rownames(x$confi))
     } else {
-      text(x$confi[, x1], yplus + x$confi[, y1], c(1:x$nobs))
+      text(x$confi[, x1], yplus + x$confi[, y1], c(1:x$nobj))
     }
   }

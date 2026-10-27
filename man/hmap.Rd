@@ -5,10 +5,10 @@
 Heatmap for skew-symmetric data
 }
 \description{
-This heatmap displays the values of a skew-symmetric matrix by colors. The option \code{dominance} orders the rows and columns of the matrix in such a way that the values in the uppertriangle are positive and the values in the lower triangle are negative. The order is calculated from the row-sums of the signs obtained from the skew-symmetric matrix.
+This heatmap displays a color representation of the values of a skew-symmetric matrix. The option \code{dominance} orders the rows and columns of the matrix in such a way that the values in the uppertriangle are positive and the values in the lower triangle are negative. The order is calculated from the row-sums of the signs obtained from the skew-symmetric matrix.
 }
 \usage{
-hmap(x, dominance = FALSE, col = c("red", "white", "blue"),  ...)
+hmap(x, dominance = FALSE, order_rows = TRUE, col = cm.colors(n = 9),  ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,6 +18,9 @@ A square matrix, either skew-symmetric or asymmetric, or an object of class \cod
   \item{dominance}{
 If true the signs of the skew-symmetric matrix are shown in the heatmap, if set to false the values in this matrix are shown.
 }
+  \item{order_rows}{
+  Reorders the rows and columns based on the row sum of the skew-symmetric matrix
+  }
   \item{col}{
 Colors of the heatmap, can also be color palette
 }
@@ -26,7 +29,6 @@ Colors of the heatmap, can also be color palette
 }
 \examples{
 data(studentmigration)
-hmap(studentmigration, dominance = TRUE, col = c("red", "white", "blue"))
-}
+hmap(studentmigration, dominance = FALSE, col = cm.colors(n = 15))}
 \keyword{Methods}
 

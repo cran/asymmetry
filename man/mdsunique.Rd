@@ -54,13 +54,11 @@ mdsunique(data, weight = NULL, ndim = 2, verbose = FALSE, itmax = 125, eps = 1e-
 \examples{
 \dontrun{
 data("studentmigration")
-mm<-studentmigration
-mm[mm==0]<-.5          # replace zeroes by a small number
-mm <- -log(mm/sum(mm)) # convert similarities to dissimilarities
-v<-mdsunique(mm, ndim = 2, itmax = 2100, verbose=FALSE, eps = .0000000001)
-plot(v, yplus = .3)
+studentmigration[studentmigration == 0] <- .5          # replace zeroes by a small number
+log.studentmigration <- -log(studentmigration/sum(studentmigration)) # log transform
+fit.unique <- mdsunique(log.studentmigration, ndim = 2, itmax = 2100, eps = .0000000001)
+plot(fit.unique, yplus = .3)
 }
-
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

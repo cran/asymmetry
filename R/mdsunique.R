@@ -1,13 +1,17 @@
 mdsunique <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
            itmax = 125, eps = 1e-12)
   {
-    if (sum(data < 0) > 0)
+    if (sum(data < 0, na.rm = TRUE) > 0)
       stop("data for this MDS model should be positive")
     if (nrow(data) != ncol(data))
       stop("the same number of rows and columns are expected")
     nobj <- nrow(data)
     if (is.null(weight))
-      weight <- 0 * data + 1
+    {
+      weight <- matrix(1, nobj, nobj)
+      weight[is.na(data)] <- 0
+      data[is.na(data)] <- 1
+    }
     if (sum(weight < 0) > 0)
       stop("weights for this model should be positive")
     if (nrow(weight) != ncol(weight))
@@ -56,8 +60,6 @@ mdsunique <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
     colnames(mat) <- paste("D", 1:(dim(mat)[2]), sep = "")
 
     pred <- as.matrix(dist(ztil))
-
-    pred <- pred[1:nobj, (nobj + 1):(2 * nobj)] # for the todo list
     pred <- dist[1:nobj, (nobj + 1):(2 * nobj)]
     fulldim <- ndim + 2 * nobj
     resid <- data - pred
@@ -79,7 +81,8 @@ mdsunique <- function(data, weight = NULL, ndim = 2, verbose = FALSE,
         model = "MDS with unique dimensions",
         unique = unique,
         row = row,
-        col = col
+        col = col,
+        call = match.call()
       )
     class(result) <- "mdsunique"
     return(result)
@@ -109,13 +112,16 @@ plot.mdsunique <-
     if (!is.null(rownames(x$confi))) {
       text(x$confi[, x1], yplus + x$confi[, y1], rownames(x$confi))
     } else {
-      text(x$confi[, x1], yplus + x$confi[, y1], c(1:x$nobs))
+      text(x$confi[, x1], yplus + x$confi[, y1], c(1:x$nobj))
     }
   }
 
 print.mdsunique <-
   function(x, ...)
   {
+    cat("Call:              ")
+    print(x$call)
+    cat("\n")
     cat("Dimensions:              ")
     cat(x$ndim)
     cat("\n")
